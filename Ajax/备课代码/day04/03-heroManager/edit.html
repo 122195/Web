@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>编辑英雄</title>
+  <!-- 导包 -->
+  <script src="./lib/js/jquery-1.12.4.js"></script>
+  <script src="./lib/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="./lib/css/bootstrap.min.css">
+  <script src="./lib/js/template-web.js"></script>
+  <style>
+    .wrap {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/bg03.jpg') center bottom no-repeat;
+      overflow: auto;
+    }
+
+    .navbar-brand {
+      padding: 10px 15px;
+    }
+
+    .page-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .file-input {
+      outline: none;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-horizontal {
+      margin-top: 10px;
+    }
+
+    .logout {
+      font-weight: 900;
+      font-size: 20px;
+      color: #ff000d;
+      text-decoration: none;
+    }
+
+    .logout:hover {
+      text-decoration: none;
+      color: yellowgreen;
+    }
+
+    .preview {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <nav class="navbar  navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mymenu">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="images/logo.png"></a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <div class="row">
+                <div class="col-md-6 page-title">英雄信息修改</div>
+                <div class="col-md-6 text-right">当前位置：首页 &gt; 英雄信息修改</div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <form action="#" method="" class="form-horizontal" id="form">
+                <div class="form-group">
+                  <label for="heroName" class="col-sm-2 control-label">姓名</label>
+                  <div class="col-sm-10">
+                    <input required type="text" class="form-control" id="heroName" name="name" placeholder="请输入姓名"
+                      value="盖伦" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="skillName" class="col-sm-2 control-label">技能</label>
+                  <div class="col-sm-10">
+                    <input required type="text" class="form-control" id="skillName" name="skill" placeholder="请输入技能"
+                      value="躲草丛" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="heroIcon" class="col-sm-2 control-label">头像</label>
+                  <div class="col-sm-10">
+                    <input required type="file" class="file-input" id="heroIcon" name="icon" />
+                    <!-- 预览的标签 -->
+                    <img src="" class="preview" alt="" style="height: 100px;" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary btn-save">
+                      保存
+                    </button>
+                    <button type="submit" class="btn btn-cancel">取消</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    //入口函数
+    $(function () {
+      /*1.显示英雄详情
+      1.1 获取window.location.href属性中 id=后面的值
+      1.2 ajax发送请求
+      1.3 响应数据之后显示到页面
+      */
+      //1.1 获取window.location.href属性中 id=后面的值
+      let id = window.location.search.split('=')[1];
+      //1.2 ajax发送请求
+      $.ajax({
+        type: 'get',
+        url: 'http://127.0.0.1:4399/hero/id',
+        data: {
+          id: id
+        },
+        success: function (data) {
+          if (data.code == 200) {
+            //1.3 响应数据之后显示到页面
+            //由于英雄详情只有一个数据，这里没有必要使用模板引擎
+            $('#heroId').val(data.data.id);
+            $('#heroName').val(data.data.name);
+            $('#skillName').val(data.data.skill);
+            $('.preview').attr('src', data.data.icon);;
+          }
+        }
+      });
+
+      /* 2.文件预览功能步骤
+      2.1 给file表单设置 onchange事件
+      2.2 获取选取的文件 ： this.files[0]
+      2.3 创建临时url ： URL.createObjectURL()
+      2.4 显示到页面
+       */
+      //2.1 给file表单设置 onchange事件
+      $('#heroIcon').on('change', function () {
+        //2.2 获取选取的文件信息 ： this.files[0]
+        let fileIcon = this.files[0];
+        //2.3 创建临时url ： URL.createObjectURL()
+        let url = URL.createObjectURL(fileIcon);
+        //2.4 显示到页面
+        $(this).next().attr('src', url);
+      });
+
+
+
+      /* 3.编辑英雄
+      //3.1 阻止表单默认提交事件 ： e.preventDefault();
+      //3.2 创建FormData对象 ： new FormData(表单form)
+      //3.3 ajax发送post请求
+      //3.4 成功之后跳转回首页
+      */
+      $('#form').on('submit', function (e) {
+        //3.1 禁用表单默认提交事件
+        e.preventDefault();
+        //3.2 创建FormData对象 ： new FormData(表单form)
+        let fd = new FormData(this);
+        //3.2 ajax发送post请求
+        $.ajax({
+          url: 'http://127.0.0.1:4399/hero/update',
+          type: 'post',
+          dataType: 'json',
+          data: fd,
+          contentType: false,
+          processData: false,
+          success: function (data) {
+            if (data.code == 202) {
+              //4.跳回到首页.
+              alert('修改成功');
+              window.location.href = './index.html';
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

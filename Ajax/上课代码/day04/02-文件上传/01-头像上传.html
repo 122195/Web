@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>案例-头像上传</title>
+    <link rel="stylesheet" href="./lib/bootstrap-v4.6.0.css" />
+    <style>
+      .thumb-box {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .thumb {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="thumb-box">
+      <!-- 头像 -->
+      <img src="./images/cover.jpg" class="img-thumbnail thumb" alt="" />
+      <div class="mt-2">
+        <!-- 文件选择框 -->
+        <!-- accept 属性表示可选择的文件类型 -->
+        <!-- image/* 表示只允许选择图片类型的文件 -->
+        <input type="file" id="iptFile" accept="image/*" />
+        <br />
+      </div>
+    </div>
+
+    >
+    <script src="./lib/axios.js"></script>
+
+    <script>
+      /*文件上传 
+      1.前置知识点
+        1.1 file表单, 默认自带点击事件，作用是选择文件
+        1.2 上传文件‘必须’要使用原生内置的FormData对象
+          (1)文件需要设置单独的请求头 : multipart/form-data
+          (2)文件以二进制方式传输（文本是utf8编码，但是文件不是）
+        1.3 file表单有一个特殊的事件onchange事件 ： 用户选择了文件就会执行
+
+      2.文件上传流程
+        2.1 在file表单的onchange事件中获取用户选择的图片
+           this.files[0]
+        2.2 创建FormData对象,将图片添加到fd对象中
+          let fd = new FormData()
+          fd.append('接口参数',文件数据)
+        2.3 ajax发送请求 : 参数必须是formdata对象
+       */
+      //1.给file表单注册onchange事件 
+      document.querySelector('#iptFile').onchange = function(){
+        // console.log( this )//file表单
+        //2.获取用户选择的文件
+        /* 
+        this.files : 伪数组，存储所有的选中的文件
+        this.files[0] : 取出第一个文件
+         */
+        console.log( this.files[0] )
+        //3.创建FormData对象
+        let fd =  new FormData()
+        //4. 调用append方法追加文件
+        fd.append('avatar', this.files[0] )
+        //5. ajax发送请求
+        axios({
+          url:'http://www.liulongbin.top:3009/api/upload/avatar',
+          method:'post',
+          /* 将formdata对象作为参数, fd对象会自动帮我们设置请求头，自动处理文件参数 */
+          data:  fd,
+        }).then(res=>{
+          //成功回调
+          console.log(res)
+          //6.显示上传成功的图片
+          document.querySelector('img').src = `http://www.liulongbin.top:3009${res.data.url}`
+        })
+      }
+  
+    </script>
+    
+  </body>
+</html>

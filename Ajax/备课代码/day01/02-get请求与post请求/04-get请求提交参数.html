@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      /*
+        1.get传参格式： url?key=value
+        2.示例： https://autumnfish.cn/api/joke/list?num=10
+      */
+
+      // 1.实例化ajax对象
+      let xhr = new XMLHttpRequest()
+      // 2.设置请求方法和地址
+      // get请求的数据直接添加在url的后面 格式是 url?key=value
+      xhr.open("get", "https://autumnfish.cn/api/joke/list?num=10")
+      // 3.发送请求
+      xhr.send()
+      // 4.注册回调函数
+      xhr.onload = function() {
+        console.log(xhr.responseText)
+      }
+    </script>
+  </body>
+</html>

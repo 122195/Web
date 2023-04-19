@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      /* 1.ajax: 在页面不刷新的情况下向服务器请求数据
+         2.XMLHttpRequest ： http请求对象，负责实现ajax技术（小黄人）
+            （1）创建XMLHttpRequest对象
+                    * 小黄人，相当于黄袍加身的跑腿外卖小哥哥
+            （2）设置请求
+                    * 告诉小黄人服务器地址
+            （3）发送请求
+                    * 小黄人出发去指定地址取外卖（数据）
+            （4）注册响应回调函数
+                    * 小黄人把取回的外卖送到你家门口
+        */
+
+        //1.创建小黄人对象XMLHTTPRequest
+        let xhr = new XMLHttpRequest()
+        //2.设置请求
+        xhr.open("get", "https://autumnfish.cn/api/joke")
+        //3.发送请求
+        xhr.send()
+        //4.注册回调函数
+        /* 这个函数不是立即执行的，而是等服务器把数据响应返回才会执行（PS：什么时候执行取决于你的网速快慢） */
+        xhr.onload = function() {
+          console.log(xhr.responseText)
+          document.body.innerText = xhr.responseText
+        }
+    </script>
+  </body>
+</html>

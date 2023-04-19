@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- 引入 lib 目录下的 bootstrap 样式表 -->
+    <link rel="stylesheet" href="./lib/bootstrap-v4.6.0.css" />
+    <style>
+      :root {
+        font-size: 15px;
+      }
+
+      body {
+        padding-top: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 栅格系统 -->
+    <div class="container-fluid">
+      <!-- 栅格系统中的一行 -->
+      <div class="row">
+        <!-- 左侧的表格，占了 8 列 -->
+        <div class="col-sm-8">
+          <table
+            class="table table-bordered table-striped table-dark table-hover text-center"
+          >
+            <thead>
+              <!-- 表头行 -->
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">书名</th>
+                <th scope="col">作者</th>
+                <th scope="col">出版社</th>
+                <th scope="col">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 表格中的每一行 -->
+              <tr>
+                <th scope="row">xxx</th>
+                <td>xxx</td>
+                <td>xxx</td>
+                <td>xxx</td>
+                <td>
+                  <button type="button" class="btn btn-link btn-sm">
+                    删除
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 右侧的添加区域，占了 4 列 -->
+        <div class="col-sm-4">
+          <!-- 添加图书的卡片 -->
+          <div class="card text-white bg-secondary sticky-top">
+            <div class="card-header">添加新图书</div>
+            <form class="card-body bg-light" id="addForm">
+              <!-- 书名 -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">书名</span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="请输入图书名称"
+                  name="bookname"
+                />
+              </div>
+              <!-- 作者 -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">作者</span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="请输入作者名字"
+                  name="author"
+                />
+              </div>
+              <!-- 出版社 -->
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">出版社</span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="请输入出版社名称"
+                  name="publisher"
+                />
+              </div>
+              <!-- 添加按钮 -->
+              <button class="btn btn-dark" type="submit">添加</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 导入axios -->
+    <script src="./lib/axios.js"></script>
+
+    <script>
+       /* 思路分析
+      1.页面一加载,axios请求图书列表
+       * 技术点: 封装渲染函数
+      2.点击新增 : 新增图书
+       * 技术点： form表单获取函数封装
+      3.点击删除 ： 删除图书
+       * 技术点:  事件委托技术 给动态新增元素注册事件
+      4.loading效果
+       * 技术点 ： axios拦截器
+      5.axios基地址
+      */
+
+       //函数(1) : 封装渲染函数
+       const renderData = arr => {
+         document.querySelector("tbody").innerHTML = arr
+           .map(
+             item => `
+         <tr>
+           <th scope="row">${item.id}</th>
+           <td>${item.bookname}</td>
+           <td>${item.author}</td>
+           <td>${item.publisher}</td>
+           <td>
+             <button type="button" class="btn btn-link btn-sm" data-id="${item.id}">
+               删除
+             </button>
+           </td>
+         </tr>`
+           )
+           .join("")
+       }
+
+       //函数(2) : 获取form表单参数
+       const getFormData = () => {
+         /* form表单默认发送ajax请求 : 自动获取表单的name属性与value属性，拼接成name=value
+        form表单name属性作用 : 告诉服务器，我发给你的数据是什么
+        一般开发中，form表单的name属性设置成与 后台接口参数一致
+        */
+         //1.获取所有的表单
+         let inputList = document.querySelectorAll("form input")
+         //2.遍历表单，拼接成对象
+         let obj = {}
+         inputList.forEach(item => {
+           obj[item.name] = item.value
+         })
+         return obj
+       }
+
+       //函数(3) : 封装一个ajax请求图书列表的函数
+       const getBookList = () => {
+         axios({
+           url: "http://www.liulongbin.top:3006/api/getbooks",
+           method: "get"
+         }).then(res => {
+           //成功回调
+           console.log(res)
+           renderData(res.data.data)
+         })
+       }
+
+
+       //1. 页面一加载,axios请求图书列表
+       getBookList()
+
+       //2. 点击添加按钮
+       document.querySelector("form .btn").onclick = function(e) {
+         //0.阻止表单默认跳转
+         e.preventDefault()
+         //1.获取表单参数
+         let data = getFormData()
+         console.log(data)
+         //2.非空判断
+         /*开关思想
+         arr.some()  :  判断数组中是否有元素满足条件 （只要有一个满足即可）
+         arr.every() :  判断数组中是否所有元素满足条件 （必须要全部满足）
+         Object.values(对象名) :  获取对象所有的属性值，放入数组中
+         */
+         if (Object.values(data).some(item => item == "")) {
+           return alert("输入框不能为空")
+         }
+         //3.ajax发送请求
+         axios({
+           url: "http://www.liulongbin.top:3006/api/addbook",
+           method: "POST",
+           data // ES6解构  data:data
+         }).then(res => {
+           //成功回调
+           console.log(res)
+           //错误提示
+           if (res.data.status != 201) {
+             return alert(res.data.msg)
+           }
+           //新增成功 : 重新请求图书列表
+           getBookList()
+           //清空表单
+           document.querySelector('form').reset()
+         })
+       }
+
+       /* 3.点击删除 : 动态新增按钮需要注册委托事件
+       事件委托 : 给父元素注册事件, 委托给子元素处理
+         细节: 注册的父元素也不能是动态新增的， 如果不好分辨可以直接给body注册
+       事件委托注意点:
+         this : 父元素
+         e.target : 事件目标(点击的子元素)
+       */
+
+       document.querySelector('tbody').onclick = function(e){
+         console.log(e)
+         //1. 判断是否是委托的子元素
+         if( e.target.classList.contains('btn-sm') ){
+          //2. 获取当前点击按钮的自定义属性data-id  (渲染的时候给按钮新增自定义属性存储id)
+          let id = e.target.getAttribute('data-id')
+          console.log(id)
+          
+           //点击删除
+           axios({
+             url:'http://www.liulongbin.top:3006/api/delbook',
+             method:'get',
+             params : {id}
+           }).then(res=>{
+             //删除失败
+             if( res.data.status != 200 ){
+               return alert( res.data.msg ) 
+             }
+             //删除成功
+             alert( res.data.msg )
+             //重新请求图书列表
+             getBookList()
+           })
+         }
+       }
+    </script>
+  </body>
+</html>

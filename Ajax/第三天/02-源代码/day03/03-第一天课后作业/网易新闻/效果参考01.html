@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bootstrap 101 Template</title>
+
+  <!-- 导包 -->
+  <script src="./libs/js/jquery-1.12.4.js"></script>
+  <script src="./libs/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./libs/css/bootstrap.min.css">
+
+  <style>
+    /* 如果想要覆盖bootstrap默认样式，只需要自己添加类名覆盖即可 */
+    .col-margin {
+      margin-top: 10px;
+      color: #4183C4
+    }
+
+    .col-xs-6 {
+      cursor: pointer;
+      border: 2px solid transparent;
+      padding: 5px;
+    }
+
+    .col-xs-6:hover {
+      border-color: cyan;
+    }
+
+    #news:hover,
+    #pics:hover {
+      color: magenta;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1.导航条 -->
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <a class="navbar-brand" href="#" style="width:100%;text-align: center;">
+        <span id="news">网易新闻</span>
+        <span style="padding: 0px 200px"></span>
+        <span id="pics">美推荐图</span>
+      </a>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+  </nav>
+  <!-- 2.内容容器 -->
+  <div class="container heroList">
+    <!-- 内容 -->
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object" src="http://p0.qhimg.com/dr/72__/t016f2baa3729884891.png" alt="..." />
+            </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">新闻标题</h4>
+            新闻描述
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./libs/axios.js"></script>
+  <script>
+
+    //封装新闻请求
+    const getNews = ()=>{
+      axios({
+      url:' https://api.apiopen.top/getWangYiNews',
+      method:'get',
+    }).then(res=>{
+      //成功回调
+      console.log(res)
+      //渲染数据
+      document.querySelector('.row').innerHTML = res.data.result.map(item=>`
+      <div class="col-xs-6 col-xs-offset-3 col-margin " 
+      onclick=" window.open('${item.path}') "
+      >
+        <div class="media">
+          <div class="media-left">
+          <a href="#">
+            <img class="media-object" src="${item.image}" alt="...">
+          </a>
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">${item.title}</h4>
+            ${item.passtime}
+          </div>
+        </div>
+      </div>
+      `).join('')
+    })
+    }
+
+    //封装图片
+    const getPics = ()=>{
+      axios({
+      url:' https://api.apiopen.top/getImages',
+      method:'get',
+    }).then(res=>{
+      //成功回调
+      console.log(res)
+      //渲染数据
+      document.querySelector('.row').innerHTML = res.data.result.map(item=>`
+      <div class="col-xs-6 col-margin text-center" 
+      onclick = " window.open('${item.img}' )"
+      >
+            <img onerror="src=&quot;http://ww1.sinaimg.cn/large/0065oQSqly1frjd4var2bj30k80q0dlf.jpg&quot;" class="media-object" src="${item.img}" alt="..." height="300px" style="display:block;margin:0 auto">
+        </div>
+      `).join('')
+    })
+    }
+
+    //1.页面一加载，默认请求新闻列表
+    getNews()
+
+
+    //1.点击网易新闻
+    document.querySelector('#news').onclick = function(){
+      getNews()
+    }
+    //2.点击美图推荐
+    document.querySelector('#pics').onclick = function(){
+      getPics()
+    }
+
+  </script>
+</body>
+
+</html>

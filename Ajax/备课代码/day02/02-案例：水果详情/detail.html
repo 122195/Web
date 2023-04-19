@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      .info {
+        display: inline-block;
+        flex: 1;
+        height: 100%;
+        color: #000;
+        text-align: center;
+      }
+
+      .info .story h5 {
+        margin-top: 10px;
+      }
+
+      .info .story p {
+        padding: 30px 50px;
+        text-align: left;
+        line-height: 30px;
+        font-weight: 500;
+        text-indent: 2em;
+      }
+
+      .name {
+        text-align: center;
+        line-height: 30px;
+        border-bottom: 1px solid #ccc;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+
+      .img {
+        margin: 15px 0;
+        text-align: center;
+        max-height: 45%;
+        overflow: hidden;
+        /* 伸缩盒子实现图片居中 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+      }
+
+      .img > img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+      }
+
+      h5 {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="info">
+      <div class="bg">
+        <div class="name" style="color:red">水果名称:桃子</div>
+        <div class="img">
+          <img
+            src="./img/火龙果.png"
+            alt=""
+          />
+        </div>
+        <p style="color:red">水果信息：蔷薇目蔷薇科植物</p>
+        <div class="story">
+          <h5>详细介绍：</h5>
+          <p>
+            桃（学名：Amygdalus persica
+            L.）：蔷薇科、桃属植物。落叶小乔木；叶为窄椭圆形至披针形，长15厘米，宽4厘米，先端成长而细的尖端，边缘有细齿，暗绿色有光泽，叶基具有蜜腺；树皮暗灰色，随年龄增长出现裂缝；花单生，从淡至深粉红或红色，有时为白色，有短柄，直径4厘米，早春开花；近球形核果，表面有毛茸，肉质可食，为橙黄色泛红色，直径7.5厘米，有带深麻点和沟纹的核，内含白色种子。
+            是一种果实作为水果的落叶小乔木，花可以观赏，果实多汁，可以生食或制桃脯、罐头等，核仁也可以食用。果肉有白色和黄色的，桃有多种品种，一般果皮有毛，“油桃”的果皮光滑；“蟠桃”果实是扁盘状；“碧桃”是观赏花用桃树，有多种形式的花瓣。
+            原产中国，各省区广泛栽培。世界各地均有栽植。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 导入axios -->
+    <script src="./lib/axios.js"></script>
+    <script>
+        //1.获取从其他页面传递过来的参数id
+        let id = location.search.split('=')[1]
+        //2.ajax发送请求
+        axios({
+            url:`https://autumnfish.cn/fruitApi/fruit/${id}`,
+            method:'get',
+        }).then(res=>{
+            //成功回调
+            console.log(res)
+            //对res进行解构
+            let {data} = res.data
+            document.querySelector('.info').innerHTML = `
+            <div class="bg">
+            <div class="name" style="color:red">水果名称:${data.name}</div>
+            <div class="img">
+            <img src="${data.icon}"/>
+            </div>
+            <p style="color:red">水果信息：${data.info}</p>
+            <div class="story">
+            <h5>详细介绍：</h5>
+            <p>${data.desc}</p>
+            </div>
+            </div>
+            `
+        })
+
+    </script>
+  </body>
+</html>

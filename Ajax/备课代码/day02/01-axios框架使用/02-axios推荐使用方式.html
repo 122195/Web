@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button class="btn1">基本使用</button>
+    <button class="btn2">点我发送get请求</button>
+    <button class="btn3">点我发送post请求</button>
+
+    <!-- 导入axios -->
+    <script src="./axios.js"></script>
+    <script>
+      /*
+        1.学习目标介绍 ： axios其他使用方式
+        2.学习路线 ：
+            (1)复习上一小节介绍的两种方式
+                axios.get().then()
+                axios.post().then()
+            (2)介绍第三种使用方式
+                axios({
+                    url:'请求路径',
+                    method:'请求方式',
+                    data:{ post请求参数 },
+                    params:{ get请求参数 }
+                }).then(res=>{
+                    //成功回调
+                    //console.log(res)
+                });
+        */
+
+      //基本使用
+      document.querySelector('.btn1').onclick = function() {
+        axios({
+          url: "https://autumnfish.cn/api/joke/list?num=10",
+          method: "get"
+        }).then(res => {
+          console.log(res)
+        })
+      }
+
+      //get请求
+      document.querySelector('.btn2').onclick = function() {
+        axios({
+          url: `https://autumnfish.cn/api/joke/list`,
+          method: "get",
+          params:{
+              num:10
+          }
+        }).then(res => {
+          console.log(res)
+        })
+      }
+
+      //post请求
+      document.querySelector('.btn3').onclick = function() {
+        axios({
+          url: "http://www.liulongbin.top:3009/api/login",
+          method: "post",
+          data: {
+            username: "admin",
+            password: "123456"
+          }
+        }).then(res => {
+          console.log(res)
+        })
+      }
+    </script>
+  </body>
+</html>

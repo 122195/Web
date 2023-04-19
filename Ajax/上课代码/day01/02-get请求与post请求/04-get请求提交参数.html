@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+      <script>
+        /* 
+        1.ajax发送get请求参数  : 在url后面拼接
+           格式:  url?key=value
+        */  
+
+        //(1)创建xhr
+        let xhr = new XMLHttpRequest()
+        //(2)设置请求方法和地址
+        xhr.open('get','https://autumnfish.cn/api/joke/list?num=5')
+        //(3)发送请求
+        xhr.send()
+        //(4)注册响应事件
+        xhr.onload = function(){
+          console.log(xhr.responseText)
+        }
+        
+      </script>
+  </body>
+</html>

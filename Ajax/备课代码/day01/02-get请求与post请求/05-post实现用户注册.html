@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      /* 
+        请求方法get和post区别： 传参方式不同
+            get请求： 直接在url后面拼接参数
+                * 参数在url中，安全性不高
+            post请求：
+                1.需要设置请求头（固定语法）：xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded')
+                    * 注意：这是固定格式，错一个字母都不行，强烈建议复制粘贴
+                2.使用xhr的send方法发送参数： xhr.send('参数名=参数值');
+                    * 注意：不要加前面的? 
+      */
+     
+      //(1).实例化ajax对象
+      let xhr = new XMLHttpRequest()
+      //(2).设置请求方法和地址
+      xhr.open("post", "https://autumnfish.cn/api/user/register")
+      //(3).设置请求头（post请求才需要设置）
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+      //(4).发送请求 ： 参数格式  'key=value'
+      xhr.send("username=admin")
+      //(5).注册回调函数
+      xhr.onload = function() {
+        console.log(xhr.responseText)
+      }
+    </script>
+  </body>
+</html>

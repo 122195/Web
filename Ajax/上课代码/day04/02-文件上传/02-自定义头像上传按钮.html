@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>案例-头像上传</title>
+    <link rel="stylesheet" href="./lib/bootstrap-v4.6.0.css" />
+    <style>
+      .thumb-box {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .thumb {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="http://www.baidu.com">asjhfvgsakfvgaskjgfasjkfgajskgfsakjhfgasjk</a>   
+    <div class="thumb-box">
+      <!-- 头像 -->
+      <img src="./images/cover.jpg" class="img-thumbnail thumb" alt="" />
+      <div class="mt-2">
+        <!-- 文件选择框 -->
+        <!-- accept 属性表示可选择的文件类型 -->
+        <!-- image/* 表示只允许选择图片类型的文件 -->
+        <input
+          type="file"
+          id="iptFile"
+          accept="image/*"
+         style="display: none"
+        />
+        <br />
+        <!-- 选择头像图片的按钮 -->
+        <button class="btn btn-primary" id="btnChoose">
+          选择 & 上传图片
+        </button>
+      </div>
+    </div>
+
+    <!-- label标签有一个独有的for属性, 它的值是 input元素的id 
+        for作用： 让label与input建立关联。 点击了label相当于点击了input
+    -->
+    <label for="iptFile">
+      <img src="./images/icon.png" width="60px" alt="">
+    </label>
+
+    
+    <script src="./lib/axios.js"></script>
+
+    <script>
+      /* 自定义文件上传按钮思路
+          1. 隐藏file表单  （设置display为none）
+          2. 给自定义按钮注册点击事件 , 点击注册 file表单'默认'点击事件
+              触发注册点击事件 :  dom元素.onclick()
+              触发'默认'点击事件 :  dom元素.click()
+      */
+
+        //点击自定义按钮
+        document.querySelector('#btnChoose').onclick = function(){
+          //触发file表单点击事件即可
+          /* 
+          dom对象.onclick()   : 只能触发注册的点击事件， 没有注册则无法触发
+          dom对象.click()     : 触发注册 + 触发默认点击事件  ( a标签、form按钮、file表单 )
+          */
+          document.querySelector('#iptFile').click()
+        }
+
+        //1.给file表单注册onchange事件 : 选择文件触发
+        document.querySelector('#iptFile').onchange = function(){
+          //2. 获取用户选择的文件   this.files[0] 
+          //3. 创建FormData对象，把文件添加到fd对象
+          let fd = new FormData()
+          fd.append( 'avatar',this.files[0] )
+          //4.发送ajax
+          axios({
+            url:'http://www.liulongbin.top:3009/api/upload/avatar',
+            method:'post',
+            data: fd ,
+          }).then(res=>{
+            //成功回调
+            console.log(res)
+            //把服务器给的url显示到img标签 (可选)
+            document.querySelector('img').src = `http://www.liulongbin.top:3009${res.data.url}`
+          })
+
+        }
+    </script>
+   
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/bootstrap-v4.6.0.css" />
+    <style>
+      body {
+        padding: 20px;
+      }
+
+      .loading-box {
+        position: fixed;
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        box-shadow: 1px 1px 3px #efefef;
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 按钮 -->
+    <button class="btn btn-primary" id="btn1">请求1</button>
+    <button class="btn btn-info" id="btn2">请求2</button>
+    <button class="btn btn-warning" id="btn3">请求3</button>
+
+    <!-- loading 区域 -->
+    <div class="loading-box">
+      <div class="spinner-border m-5 text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <script src="./lib/axios.js"></script>
+
+    <script>
+      /* axios拦截器工作流程
+     1. axios 发起请求
+     2. 执行 请求拦截器 : 添加ajax发送请求之前的操作
+     3. 服务器 接收、处理、响应 请求
+     4. 执行 响应拦截器 ： 添加服务器响应之后的操作
+     4. axios 接收响应(执行then方法)
+     */
+
+      // 添加请求拦截器
+      axios.interceptors.request.use(
+        function(config) {
+          // 可以操作这次请求了
+          // console.log(config); // ajax请求参数;
+          // 展示 loading 效果
+          document.querySelector(".loading-box").style.display = "block"
+          // 返回固定数据
+          return config
+        },
+        function(error) {
+          // 对请求错误做些什么 , 下面这句话，固定语法;
+          return Promise.reject(error)
+        }
+      )
+
+      // 添加响应拦截器
+      axios.interceptors.response.use(
+        function(response) {
+          //服务器响应的数据
+          // console.log(response);
+          // 隐藏 loading 效果
+          document.querySelector(".loading-box").style.display = "none"
+          // 把服务器响应的数据返回给axios的then方法
+          return response
+        },
+        function(error) {
+          // 隐藏 loading 效果
+          $(".loading-box").hide() // 失败了，也要隐藏 loadding 效果;
+          // 对响应错误做点什么
+          return Promise.reject(error)
+        }
+      )
+
+      //按钮1
+      document.querySelector("#btn1").onclick = function() {
+        axios({
+          url: "http://www.liulongbin.top:3009/api/news",
+          method: "get"
+        }).then(res => {
+          //成功回调
+          console.log(res)
+        })
+      }
+
+      //按钮2
+      document.querySelector("#btn2").onclick = function() {
+        axios({
+          url: "https://autumnfish.cn/fruitApi/fruits",
+          method: "get"
+        }).then(res => {
+          //成功回调
+          console.log(res)
+        })
+      }
+      //按钮3
+      document.querySelector("#btn3").onclick = function() {
+        axios({
+          url: "http://www.liulongbin.top:3009/api/login",
+          method: "post",
+          data:{ username:'admin',password:'123456'}
+        }).then(res => {
+          //成功回调
+          console.log(res)
+        })
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 导包 -->
+  <script src="./lib/js/jquery-1.12.4.js"></script>
+  <script src="./lib/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="./lib/css/bootstrap.min.css">
+  <script src="./lib/js/template-web.js"></script>
+  <title>首页</title>
+  <style>
+    .wrap {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/bg03.jpg') center bottom no-repeat;
+      overflow: auto;
+    }
+
+    .navbar-brand {
+      padding: 10px 15px;
+    }
+
+    .logout {
+      font-weight: 900;
+      font-size: 20px;
+      color: #ff0000;
+      text-decoration: none;
+    }
+
+    .logout:hover {
+      text-decoration: none;
+      color: yellowgreen;
+    }
+
+    #my-table th {
+      text-align: center;
+    }
+
+    #my-table td {
+      text-align: center;
+      line-height: 80px;
+      padding: 0;
+      padding: 10px;
+    }
+
+    td img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .username {
+      font-weight: 900;
+      color: hotpink;
+      background-color: yellowgreen;
+    }
+
+    .pagination {
+      margin: 0px;
+      padding: 0px;
+      font-size: 0;
+      line-height: 1;
+    }
+
+    .pagination li {
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    .mp15 {
+      margin-top: 15px;
+    }
+
+    .table {
+      margin-bottom: 0;
+    }
+
+    .table-bordered>thead>tr>td,
+    .table-bordered>thead>tr>th {
+      border-bottom-width: 1px;
+    }
+
+    .page-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <nav class="navbar  navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mymenu">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="images/logo.png"></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <div class="row">
+                <div class="col-md-6 page-title">英雄列表</div>
+                <div class="col-md-6 text-right">当前位置：首页</div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-3">
+                  <a href="./add.html" class="btn btn-success pull-right">新增</a>
+                </div>
+              </div>
+
+              <table id="my-table" class="table table-bordered mp15">
+                <thead>
+                  <tr>
+                    <th width="25%">头像</th>
+                    <th width="25%">姓名</th>
+                    <th width="25%">技能</th>
+                    <th width="25%">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><img src="./lib/img/盖伦.png" alt="" /></td>
+                    <td>盖伦</td>
+                    <td>躲草丛</td>
+                    <td>
+                      <button onclick="location.href='./edit.html'" class="btn btn-primary">编辑</button>
+                      <button onclick="alert('算你狠')" class="btn btn-danger">删除</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 定义模板 -->
+  <script id="hero_list" type="text/html">
+    {{ each data }}
+    <tr>
+        <td><img src="{{ $value.icon }}" alt="" /></td>
+        <td>{{ $value.name }}</td>
+        <td>{{ $value.skill }}</td>
+        <td>
+          <button onclick="location.href='./edit.html?id={{ $value.id }}'" class="btn btn-primary">编辑</button>
+          <button onclick="alert('算你狠')" data-id="{{ $value.id }}" class="btn btn-danger btn-delete" >删除</button>
+        </td>
+      </tr>
+    {{ /each }}
+  </script>
+  <script>
+    //入口函数
+    $(function () {
+      /* 1.查询英雄列表
+       */
+      $.ajax({
+        url: 'http://127.0.0.1:4399/hero/all',
+        type: 'get',
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+          //模板引擎渲染页面
+          let htmlStr = template('hero_list',data);
+          $('tbody').html(htmlStr);
+        }
+      });
+
+
+      /*2.删除英雄
+      2.1 给删除按钮注册委托事件（由于删除按钮是模板引擎动态生成，所以需要动态注册事件） 
+      2.2 弹出确认框
+      2.3 获取当前删除按钮的自定义属性data-id拿到要删除的英雄id
+      2.4 ajax发送请求
+      2.5 响应数据之后，刷新当前页面
+       */
+
+      //2.1 给删除按钮注册委托事件
+      $('tbody').on('click', 'button.btn-delete', function () {
+        // 2.2 弹出确认框
+        if (confirm("你确定要删除吗?")) {
+          // 2.3 获取当前删除按钮的自定义属性data-id拿到要删除的英雄id
+          let id = $(this).attr('data-id');
+          //console.log(id);
+          // 2.4 ajax发送请求
+          $.ajax({
+            type: 'get',
+            url: 'http://localhost:4399/hero/delete',
+            data: {
+              id: id
+            },
+            success: function (data) {
+              if (data.code == 204) {
+                alert('删除成功!');
+                //2.5 响应数据之后，刷新当前页面
+                window.location.reload();
+              }
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

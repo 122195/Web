@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/inputnumber.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>水果列表</title>
+  </head>
+
+  <body>
+    <div class="app-container" id="app">
+      <!-- 顶部banner -->
+      <div class="banner-box"><img src="./img/fruit.jpg" alt="" /></div>
+      <!-- 面包屑 -->
+      <div class="breadcrumb">
+        <span>🏠</span>
+        /
+        <span>水果列表</span>
+      </div>
+      <!-- table -->
+      <div class="main">
+        <div class="table">
+          <!-- 头部 -->
+          <div class="thead">
+            <div class="tr">
+              <div class="th">名字</div>
+              <div class="th">图片</div>
+              <div class="th">简介</div>
+              <div class="th">操作</div>
+            </div>
+          </div>
+          <div class="tbody">
+            <div class="tr">
+              <div class="td">火龙果</div>
+              <div class="td">
+                <img alt="" src="./img/火龙果.png" />
+              </div>
+              <div class="td">
+                <span class="my-input__inner count">一种好吃的水果</span>
+              </div>
+              <div class="td">
+                <button class="info">查看详情</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 导入axios -->
+    <script src="./lib/axios.js"></script>
+
+    <script>
+      /* url路径传参的流程总结   A页面 跳转到 B页面
+      1. 给按钮添加行内js跳转  (动态新增按钮不能直接获取，但是可以注册行内事件)
+      2. 在url路径的后面拼接你的参数 ( 页面跳转只由路径决定， 参数影响跳转)
+        <button onclick=" location.href= ' url?id=参数值 ' "></button>
+      3. 在B页面解析location.search参数
+        let id = location/search.split('=')[1]
+      */
+
+       //1.页面一进来，发送ajax请求水果列表
+
+       axios({
+         method:'get',
+         url:'https://autumnfish.cn/fruitApi/fruits'
+       }).then( res=>{
+         console.log( res )
+         //一般情况下，渲染功能会单独封装到一个函数中 (提高代码阅读性 和 维护性 )
+         renderData(res.data.data)
+       })
+      
+       //封装渲染函数
+       const renderData = arr=>{
+         document.querySelector('.tbody').innerHTML =  arr.map(item=>`
+              <div class="tr">
+              <div class="td">${item.name}</div>
+              <div class="td">
+                <img alt="" src="${item.icon}" />
+              </div>
+              <div class="td">
+                <span class="my-input__inner count">${item.info}</span>
+              </div>
+              <div class="td">
+                <button class="info" onclick=" location.href='./detail.html?id=${item.id}' "  >查看详情</button>
+              </div>
+            </div>
+        `).join('')
+       }
+
+       /* 动态新增的元素，无法直接注册事件的。 解决方案有两种
+       1.最常用 ： 事件委托技术
+       2.偶尔用 ： 行内式js注册事件  (事件处理只有1行代码)
+          <div onclick=" 事件处理代码 "></div>
+       */
+
+       
+       
+       
+       
+    </script>
+    
+  </body>
+</html>

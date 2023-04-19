@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <script type="text/javascript" src="./lib/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="./lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./lib/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="./lib/scroll.js"></script>
+    <title>聊天机器人</title>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <!-- 头部 Header 区域 -->
+      <div class="header">
+        <h3>小思同学</h3>
+        <img src="img/person01.png" alt="icon" />
+      </div>
+      <!-- 中间 聊天内容区域 -->
+      <div class="main">
+        <ul class="talk_list" style="top: 0px;">
+          <li class="left_word">
+            <img src="img/person01.png" />
+            <span>你好</span>
+          </li>
+          <!-- <li class="right_word">
+					<img src="img/person02.png" />
+					<span>你好哦</span>
+				</li> -->
+        </ul>
+        <!-- 右侧滚动条 -->
+        <div class="drag_bar" style="display: none;">
+          <div
+            class="drager ui-draggable ui-draggable-handle"
+            style="display: none; height: 412.628px;"
+          ></div>
+        </div>
+      </div>
+      <!-- 底部 消息编辑区域 -->
+      <div class="footer">
+        <img src="img/person02.png" alt="icon" />
+        <input type="text" placeholder="说的什么吧..." class="input_txt" />
+        <input type="button" value="发 送" class="input_sub" />
+      </div>
+    </div>
+
+    <!-- audio -->
+    <audio src="" autoplay></audio>
+
+    <!-- 导入axios -->
+    <script src="./lib/axios.js"></script>
+    <script>
+     
+      /* 
+      1. 给页面添加一个audio标签 ,不设置src属性 : <audio src="" autoplay></audio> 
+      2. 接收到机器人聊天内容之后， 把内容ajax发给服务器
+      3. 服务器响应音频url之后， 设置给audio标签的src属性
+      */
+      
+      // 1. 声明一个全局数组 存储 聊天内容
+      let arr = []
+
+      //点击发送按钮
+      document.querySelector(".input_sub").onclick = function() {
+        let txt = document.querySelector(".input_txt").value
+        //1.非空判断
+        if (txt == "") {
+          return alert("输入框不能为空")
+        }
+        //2.渲染自己的数据
+        arr.push( { msg : txt, isMe : true } )
+        renderData(arr)//渲染数据
+        //自动滚到最底部
+        resetui()
+        //3.ajax请求机器人内容
+        axios({
+          url: "http://www.liulongbin.top:3006/api/robot",
+          method: "get",
+          params: { spoken: txt }
+        }).then(res => {
+          //成功回调
+          console.log(res)
+          //4. 渲染机器人数据
+          arr.push( { msg : res.data.data.info.text , isMe : false } )
+          renderData(arr)//渲染数据
+          renderVoice( res.data.data.info.text )//把机器人的文本转语音
+          //自动滚到最底部
+          resetui()
+        })
+        //4.清空文本
+        document.querySelector(".input_txt").value = ''
+      }
+
+
+      //封装渲染函数
+      const renderData = arr=>{
+        document.querySelector('.talk_list').innerHTML = arr.map(item=>{
+            if( item.isMe ){
+                return `
+                <li class="right_word">
+					<img src="img/person02.png" />
+					<span>${item.msg}</span>
+				</li>
+                `
+            }else{
+                return `
+                <li class="left_word">
+					<img src="img/person01.png" />
+					<span>${item.msg}</span>
+				</li>
+                `
+            }
+        }).join('')
+      }
+    
+      //封装文字 转 语音函数
+      const renderVoice = text=>{
+        console.log( text )
+        axios({
+            url:'http://www.liulongbin.top:3006/api/synthesize',
+            method:'get',
+            params: { text }
+        }).then(res=>{
+            //成功回调
+            console.log(res)
+            //把服务器返回的url 设置给 audio标签的src属性
+            document.querySelector('audio').src = res.data.voiceUrl
+        })
+        
+      }
+    </script>
+  </body>
+</html>

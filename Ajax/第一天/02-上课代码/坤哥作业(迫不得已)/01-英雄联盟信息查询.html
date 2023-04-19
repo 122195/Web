@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+        }
+
+        .hero {
+            padding: 10px;
+            font-size: 25px;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .bg {
+            width: 1000px;
+            height: 590px;
+            margin: 10px auto;
+            background-image: url(http://ossweb-img.qq.com/images/lol/web201310/skin/big17000.jpg);
+            background-repeat: no-repeat;
+            background-size: 1000px 590px;
+        }
+
+        .bg .left {
+            height: 590px;
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding-left: 20px;
+            padding-top: 30px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .left span {
+            color: white;
+        }
+
+        .left .name {
+            margin-top: 30px;
+            font-size: 30px;
+        }
+
+        .left .icon {
+            width: 120px;
+            height: 120px;
+        }
+
+        .left .title {
+            margin-top: 20px;
+            font-size: 50px;
+            display: block;
+            font-weight: 900;
+        }
+
+        .left .story {
+            font-weight: 700;
+            color: skyblue;
+            text-align: left;
+        }
+
+        .left>div>p{
+            width: 150px;
+            height: 40px;
+            background-color: green;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 1px 1px 1px;
+            margin: 10px auto;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .left>div>p:hover{
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" class="hero" placeholder="输入英雄按下回车查询" />
+    <div class="bg">
+        <div class="left">
+            <div>
+                <span class="name">提莫</span>
+                <img class="icon" src="http://ossweb-img.qq.com/images/lol/web201310/skin/small17000.jpg" alt="" />
+                <P>更多皮肤</P>
+            </div>
+            <span class="title">迅捷斥候</span>
+            <p class="story">团战可以输，大龙可以丢，高地可以破，提莫必须死</p>
+        </div>
+    </div>
+</body>
+<script src="./libs/jquery-1.12.4.min.js"></script>
+<script>
+    /*英雄信息查询接口文档
+  
+      请求地址：https://autumnfish.cn/api/hero/info
+      请求方法：get
+      请求参数：name
+  
+      开发思路：
+      1. 给输入框注册键盘按下事件，监听enter按键 ： keyCode = 13
+      2. 获取输入的内容
+      3. 调用英雄详情接口
+      4. 数据数据返回之后显示到页面
+    */
+    $(function () {
+        //1.注册键盘按下事件
+        $('.hero').on('keydown', function (e) {
+            //判断是不是安乐enter键
+            console.log(e.keyCode);
+            if (e.keyCode == 13) {
+                //2.获取输入框文本
+                var heroName = $('.hero').val();
+                //3.调用英雄详情查询接口
+
+                //(1).实例化ajax对象
+                var xhr = new XMLHttpRequest();
+                //(2).设置请求方法和地址
+                //get请求的数据直接添加在url的后面 格式是 url?key=value
+                xhr.open('get', 'https://autumnfish.cn/api/hero/info?name=' + heroName);
+                //(3).发送请求
+                xhr.send();
+                //(4).注册回调函数
+                xhr.onload = function () {
+                    //4.将返回的数据显示到页面 （解析渲染）
+                    console.log(xhr.responseText)
+                    //4.1 将服务器返回的json数据转为js对象
+                    var heroObjc = JSON.parse(xhr.responseText);
+                    console.log(heroObjc);
+                    //姓名
+                    $('.name').text(heroObjc.name);
+                    //标题
+                    $('.title').text(heroObjc.title);
+                    //图标
+                    $('.icon').attr('src', heroObjc.icon);
+                    //故事
+                    $('.story').text(heroObjc.story);
+                    //背景图
+                    $('.bg').css('background-image', 'url(' + heroObjc.bg + ')');
+                };
+            };
+        });
+    });
+
+    /* 皮肤查询 */
+    $('.left>div>p').click(function(){
+        //1.使用sessionStorage实现页面间传参 （把英雄姓名保存在sessionStorage）
+        sessionStorage.setItem('name',$('.left>div>span').text() );
+        //2.跳转页面
+        window.location.href = './02-英雄联盟皮肤查询.html';
+    });
+</script>
+
+</html>

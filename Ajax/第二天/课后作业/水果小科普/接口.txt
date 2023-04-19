@@ -1,0 +1,20 @@
+水果列表
+
+请求地址：https://autumnfish.cn/fruitApi/fruits
+
+请求方法: get
+
+请求参数：无
+
+响应内容：json
+
+
+水果详情
+
+请求地址： https://autumnfish.cn/fruitApi/fruit/:id
+
+请求方法: get
+
+请求参数：id，在url中直接传递
+
+响应内容：json

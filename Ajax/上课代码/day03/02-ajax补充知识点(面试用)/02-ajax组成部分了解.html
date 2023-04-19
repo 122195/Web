@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        /* 
+        Ajax(阿贾克斯) : Asynchronous Javascript And XML (异步js与XML)
+          * 说人话 : 用js发送异步请求
+          
+        A : Asynchronous 异步
+          同步: 按照顺序从上往下依次执行
+          异步: 不会立即执行，而是过一会儿执行
+            * ECMAScript只有两个语法是异步 :  定时器 + ajax
+            * 事件也是异步的,只是事件属于dom语法。 一般讨论同步异步不包含事件。  
+        J : Javascript
+        A : And
+        X : XML (与json完全一致，也是解决数据跨平台传输)  与  XMLHttpRequest
+          * ajax技术诞生的时候,json还没有流行。 那个时候主要使用 XML数据格式 , 但是随着json问世，xml逐渐被json所取代。但是这个ajax的x代表xml称呼一直保留至今。    
+        */
+
+        //(1).实例化ajax对象
+        let xhr = new XMLHttpRequest()
+        //(2).设置请求方法和地址
+        //get请求的数据直接添加在url的后面 格式是 url?key=value
+        xhr.open('get', 'http://wthrcdn.etouch.cn/WeatherApi?city=武汉')
+        //(3).发送请求
+        xhr.send()
+        //(4).注册回调函数
+        xhr.onload = function() {
+          console.log(xhr.responseText)
+        }
+    </script>
+  </body>
+</html>

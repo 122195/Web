@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+      }
+
+      input {
+        border: 4px solid gray;
+        padding: 10px;
+        font-size: 25px;
+        background-color: skyblue;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .joke-container {
+        width: 500px;
+        height: 500px;
+        border: 1px solid gray;
+        border-radius: 10px;
+        padding-left: 10px;
+        margin: 10px auto;
+        font-size: 30px;
+        text-align: left;
+        text-indent: 60px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <input type="button" value="点我看笑话" class="getJoke" />
+    <div class="joke-container"></div>
+
+    <script src="./libs/jquery-1.12.4.min.js"></script>
+    <script>
+      /*
+          随机获取笑话的接口
+      
+          - 请求地址：https://autumnfish.cn/api/joke
+          - 请求方法：get
+          - 请求参数：无
+          - 响应内容：随机笑话
+      
+          思路步骤
+      
+          1. 给按钮注册点击事件 onclick
+          2. 通过ajax调用 笑话接口
+          3. 数据返回之后 显示到div中
+       */
+      document.querySelector(".getJoke").onclick = function() {
+        // 1.创建小黄人对象
+        let xhr = new XMLHttpRequest()
+        // 2.设置请求的方法和地址
+        xhr.open("get", "https://autumnfish.cn/api/joke")
+        // 3.发送请求
+        xhr.send()
+        // 4.注册回调函数
+        xhr.onload = function() {
+          // console.log(xhr.responseText)
+          // 显示到div中
+          document.querySelector('.joke-container').innerText = xhr.responseText
+        }
+      }
+    </script>
+  </body>
+</html>
