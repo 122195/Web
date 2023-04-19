@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .countdown {
+      width: 240px;
+      height: 305px;
+      text-align: center;
+      line-height: 1;
+      color: #fff;
+      background-color: brown;
+      /* background-size: 240px; */
+      /* float: left; */
+      overflow: hidden;
+    }
+
+    .countdown .next {
+      font-size: 16px;
+      margin: 25px 0 14px;
+    }
+
+    .countdown .title {
+      font-size: 33px;
+    }
+
+    .countdown .tips {
+      margin-top: 80px;
+      font-size: 23px;
+    }
+
+    .countdown small {
+      font-size: 17px;
+    }
+
+    .countdown .clock {
+      width: 142px;
+      margin: 18px auto 0;
+      overflow: hidden;
+    }
+
+    .countdown .clock span,
+    .countdown .clock i {
+      display: block;
+      text-align: center;
+      line-height: 34px;
+      font-size: 23px;
+      float: left;
+    }
+
+    .countdown .clock span {
+      width: 34px;
+      height: 34px;
+      border-radius: 2px;
+      background-color: #303430;
+    }
+
+    .countdown .clock i {
+      width: 20px;
+      font-style: normal;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="countdown">
+    <p class="next"></p>
+    <p class="title">放假倒计时</p>
+    <p class="clock">
+      <span id="hour"></span>
+      <i>:</i>
+      <span id="minutes"></span>
+      <i>:</i>
+      <span id="scond"></span>
+    </p>
+    <p class="tips"></p>
+  </div>
+  <script>
+    let hour = document.querySelector('#hour')
+    let minutes = document.querySelector('#minutes')
+    let scond = document.querySelector('#scond')
+    let next = document.querySelector('.next')
+    let tips = document.querySelector('.tips')
+    time() // 防止第一次加载出现空白
+    setInterval(time, 1000)
+    function time() {
+      let date = new Date()
+      let hours = date.getHours()
+      let minutes1 = date.getMinutes()
+      let seconds = date.getSeconds()
+      // 1.得到现在的时间戳
+      let now = +new Date()
+      // 2.得到指定时间的时间戳
+      // let last = +new Date('2023-2-6 13:00:00')
+      let last = +new Date('2023-6-1 8:00:00')
+      // 3.(计算剩余的毫秒数)/1000 = 剩余的秒数
+      let count = (last - now) / 1000
+      // console.log(count);
+      // 4.转换为时分秒
+      let h = parseInt(count / 60 / 60 % 24) // 计算小时
+      h = h < 10 ? '0' + h : h;
+      let m = parseInt(count / 60 % 60) // 计算分钟
+      m = m < 10 ? '0' + m : m;
+      let s = parseInt(count % 60) // 计算秒数
+      s = s < 10 ? '0' + s : s;
+      hour.innerHTML = h
+      minutes.innerHTML = m
+      scond.innerHTML = s
+      hours = hours < 10 ? '0' + hours : hours
+      minutes1 = minutes1 < 10 ? '0' + minutes1 : minutes1
+      seconds = seconds < 10 ? '0' + seconds : seconds
+      next.innerHTML = `今天是${date.getFullYear()}年${date.getHours()}月${date.getDate()}日`
+      tips.innerHTML = `现在是${hours}:${minutes1}:${seconds}`
+    }
+  </script>
+</body>
+
+</html>

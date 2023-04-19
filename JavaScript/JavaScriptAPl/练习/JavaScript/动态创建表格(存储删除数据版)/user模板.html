@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/user.css">
+</head>
+
+<body>
+  <h1>新增学员</h1>
+  <div class="info">
+    姓名：<input type="text" class="uname">
+    年龄：<input type="text" class="age">
+    性别: <select name="gender" id="" class="gender">
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
+    薪资：<input type="text" class="salary">
+    就业城市：<select name="city" id="" class="city">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="广州">广州</option>
+      <option value="深圳">深圳</option>
+      <option value="曹县">曹县</option>
+
+    </select>
+    <button class="add">录入</button>
+  </div>
+
+  <h1>就业榜</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>就业城市</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <td>1001</td>
+        <td>欧阳霸天</td>
+        <td>19</td>
+        <td>男</td>
+
+        <td>15000</td>
+        <td>上海</td>
+        <td>
+          <a href="javascript:">删除</a>
+        </td>
+      </tr> -->
+    </tbody>
+  </table>
+  <script>
+    // 需求①：读取本地存储数据（封装函数）
+    // 如果本地存储有数据，则返回 JSON.parse() 之后的对象
+    // 如果本地存储没有数据，则默认写入三条数据，注意存储的利用JSON.stringify() 存 储JSON 格式的数据
+    function getLocalData() {
+      let data = localStorage.getItem('data')
+      if (data) {
+        // 如果本地存储有数据，则返回 JSON.parse() 之后的对象
+        return JSON.parse(data)
+      } else {
+        // 如果本地存储没有数据，则默认写入三条数据，注意存储的利用JSON.stringify() 存储JSON 格式的数据
+        let arr = [
+          { stuId: 1001, uname: '欧阳霸天', age: 19, gender: '男', salary: '20000', city: '上海' },
+          { stuId: 1002, uname: '令狐霸天', age: 29, gender: '男', salary: '30000', city: '北京' },
+          { stuId: 1003, uname: '诸葛霸天', age: 39, gender: '男', salary: '2000', city: '北京' },
+        ]
+        localStorage.setItem('data', JSON.stringify(arr))
+      }
+    }
+    // getLocalData()
+    //  1. 准备好数据后端的数据
+
+    let tbody = document.querySelector('tbody')
+    // 添加数据按钮
+    // 获取录入按钮
+    let add = document.querySelector('.add')
+    // 获取各个表单的元素
+    let uname = document.querySelector('.uname')
+    let age = document.querySelector('.age')
+    let gender = document.querySelector('.gender')
+    let salary = document.querySelector('.salary')
+    let city = document.querySelector('.city')
+    // 封装一个渲染函数
+    function render() {
+      let arr = getLocalData()
+      // 先干掉以前的数据 让tbody里面原来的tr都没有
+      tbody.innerHTML = ''
+      for (let i = 0; i < arr.length; i++) {
+        // 1.创建tr
+        let tr = document.createElement('tr')
+        // 2.tr里面添加内容
+        tr.innerHTML = `
+        <td>${arr[i].stuId}</td>
+        <td>${arr[i].uname}</td>
+        <td>${arr[i].age}</td>
+        <td>${arr[i].gender}</td>
+
+        <td>${arr[i].salary}</td>
+        <td>${arr[i].city}</td>
+        <td>
+          <a href="javascript:" id="${i}">删除</a>
+        </td>
+        `
+        // 3.把tr追加给tbody
+        tbody.appendChild(tr)
+        // 复原所有的表单数据
+        uname.value = age.value = salary.value = ''
+        gender.value = '男'
+        city.value = '北京'
+      }
+    }
+    render()
+
+    add.addEventListener('click', function () {
+      // 读取本地数据
+      let arr = getLocalData()
+      // 获得表单里面的值 之后追加给 数组arr 用push方法追加
+      arr.push({
+        // 得到数组最后一条数据的学号 1003+1
+        stuId: arr[arr.length - 1].stuId + 1,
+        uname: uname.value,
+        age: age.value,
+        gender: gender.value,
+        salary: salary.value,
+        city: city.value
+      })
+      // 把数据存储到本地
+      localStorage.setItem('data', JSON.stringify(arr))
+      // console.log(arr);
+      render()
+    })
+    // 删除操作，删除的也是数组里面的数据，使用事件委托
+    // e.target.tagName会获取点击的元素
+    tbody.addEventListener('click', function (e) {
+      // 读取本地数据
+      let arr = getLocalData()
+      if (e.target.tagName === 'A') {
+        // alert('11')
+        arr.splice(e.target.id, 1)
+        // 重新渲染函数
+        // 把数据存储到本地
+        localStorage.setItem('data', JSON.stringify(arr))
+        render()
+      }
+      // console.log(e.target.id);
+    })
+  </script>
+</body>
+
+</html>

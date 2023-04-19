@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 同时将数组单元值100,10,80，依次赋值给变量max,min,avg
+        // let [max, min, avg] = [100, 10, 80];
+        // console.log(max);
+        // console.log(min);
+        // console.log(avg);
+        // 典型应用交互2个变量
+        // let a = 1;
+        // let b = 2;
+        // [b, a] = [a, b];
+        // console.log(a);
+        // console.log(b);
+        // 1.变量多，单元少的问题
+        // let [a, b, c, d] = [1, 2, 3]
+        // console.log(a); // 1
+        // console.log(b); // 2
+        // console.log(c); // 3
+        // console.log(d); // undefined
+        // 变量的数量大于单元值数量时，多余的变量将被赋值为undefined
+        // 2.变量少，单元多的问题 最后一个值没有变量接收
+        // let [a, b, c] = [1, 2, 3, 4]
+        // console.log(a); // 1
+        // console.log(b); // 2
+        // console.log(c); // 3
+        // 3.利用剩余参数解决变量少，单元多的问题
+        // let [a, b, ...arr] = [1, 2, 3, 4];
+        // console.log(a); // 1
+        // console.log(b); // 2
+        // console.log(arr); // [3,4]
+        // 剩余参数返回的还是一个数组
+        // 4. 防止有undefined传递单元值的情况，可以设置默认值
+        // let [a = 0, b = 0,] = [1, 2];
+        // console.log(a); // 1
+        // console.log(b); // 2
+        // 允许初始化变量的默认值，且只有单元值为 undefined 时默认值才会生效
+        // 5.  按需导入赋值
+        // const [a, b, , d] = [1, 2, 3, 4]
+        // console.log(a) // 1
+        // console.log(b) // 2
+        // console.log(d) // 4
+        // 6. 支持多维数组的结构
+        // let [a, b] = [1, [2, 3]];
+        // console.log(a); // 1
+        // console.log(b); // [2,3]
+        // console.log(b[0]); // 2
+        // console.log(b[1]); // 3
+        let [a, b, [c, d]] = [1, 2, [3, 4]]
+        console.log(a) // 1
+        console.log(b) // 2
+        console.log(c) // 3
+        console.log(d) // 4
+    </script>
+</body>
+
+</html>

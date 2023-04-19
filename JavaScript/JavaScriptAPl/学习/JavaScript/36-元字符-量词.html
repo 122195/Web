@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. * 重复零次或更多次
+        console.log(/哈*/.test('哈哈哈')); // true
+        // 2. +重复一次或更多次
+        console.log(/^哈+$/.test('哈哈哈哈')); // true
+        // 3. ?重复零次或一次
+        console.log(/^哈?$/.test('哈')); // true
+        // 4. {n}重复n次
+        console.log(/^哈{2}$/.test('哈哈')); // true
+        console.log(/^哈{2}$/.test('哈哈哈')); // false
+        // 5. {n,}重复n次或更多次
+        console.log(/^哈{3,}$/.test('哈哈哈')); // true
+        console.log(/^哈{3,}$/.test('哈哈哈哈')); // true
+        // 6. {n,m}重复n到m次
+        console.log(/^哈{3,6}$/.test('哈哈哈哈')); // true
+        console.log(/^哈{3,6}$/.test('哈哈')); // false
+        console.log(/^哈{3,6}$/.test('哈哈哈哈哈哈哈')); // false
+        // 注意：逗号左右两侧千万不要出现空格
+    </script>
+</body>
+
+</html>

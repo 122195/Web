@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = [1, 2, 3]
+        // arr.reduce(function(累计值,当前元素){},起始值)
+        let sum = arr.reduce(function (prev, item) {
+            return prev + item
+        }, 0);
+        console.log(sum);
+        // 累计值参数：
+        // 1. 如果有起始值，则以起始值为准开始累计，累计值 = 起始值
+        // 2. 如果没有起始值，则累计值以数组的第一个数组元素作为起始值开始累计
+        // 3. 后面每次遍历就会用后面的数组元素，累计到累计值里面(类似求和里面的sum)
+        // 用箭头函数写法
+        let age = arr.reduce((prev, item) => prev + item)
+        console.log(age)
+    </script>
+</body>
+
+</html>

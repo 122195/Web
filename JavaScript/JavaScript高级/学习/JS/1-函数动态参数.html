@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getSum() {
+            // arguments 动态参数 只存在于 函数里面
+            // 是伪数组
+            // console.log(arguments);
+            let sum = 0;
+            for (let i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            };
+            // return sum
+            console.log(sum);
+        }
+        // sum = getSum(2, 3, 4);
+        getSum(2, 3, 4);
+        getSum(2, 3, 4, 2, 3, 4, 5);
+        // console.log(sum);
+    </script>
+</body>
+
+</html>

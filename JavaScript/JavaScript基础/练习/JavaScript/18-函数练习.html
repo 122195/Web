@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 求任意数组中的最大值返回这个最大值
+        // function max(arr) {
+        //     let sum = 0
+        //     for (let i = 0; i <= arr.length; i++) {
+        //         if (arr[i] > sum) {
+        //             sum = arr[i]
+        //         }
+        //     }
+        //     return sum
+        // }
+        // let num = max([1, 2, 3, 4, 56, 67, 78])
+        // let num1 = max([1, 2, 3, 4, 56, 67, 7, 100])
+        // console.log(num);
+        // console.log(num1);
+        // // 求任意数组中的最小值返回这个最小值
+        // function max(arr) {
+        //     let sum = arr[3]
+        //     for (let i = 0; i <= arr.length; i++) {
+        //         if (arr[i] < sum) {
+        //             sum = arr[i]
+        //         }
+        //     }
+        //     return sum
+        // }
+        // let num = max([1, 2, 3, 4, 56, 67, 78])
+        // console.log(num);
+        // 求任意2个数中的最大值，并返回
+        let num1 = +prompt()
+        let num2 = +prompt()
+        function max(num1, num2) {
+            if (num1 > num2) {
+                return num1
+            } else {
+                return num2
+            }
+        }
+        let num = max(num1, num2)
+        // let num2 = max()
+        console.log(num);
+    </script>
+</body>
+
+</html>

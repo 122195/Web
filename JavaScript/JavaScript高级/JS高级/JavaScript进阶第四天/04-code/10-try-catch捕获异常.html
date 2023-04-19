@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>123</p>
+  <script>
+    function fn() {
+
+      try {
+        // 可能预估有问题的代码写到这里
+        const p = document.querySelector('.p')
+        p.style.color = 'red'
+      } catch (err) {
+        console.log(err.message)
+        // 中断
+        // return
+        throw new Error('你是不是把选择器写错了')
+      } finally {
+        alert('执行')
+      }
+
+      console.log(111)
+    }
+    fn()
+  </script>
+</body>
+
+</html>

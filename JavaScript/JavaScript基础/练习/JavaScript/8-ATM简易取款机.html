@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let num = +prompt('请选择您的操作：/1.存款/2.取款/3.查看余额/4.退出')
+        let money = 100
+        while (true) {
+            while (num === 1) {
+                let num1 = +prompt('请存款')
+                money = money + num1
+                num = +prompt('请选择您的操作：/1.存款/2.取款/3.查看余额/4.退出')
+            }
+            while (num === 2) {
+                let num2 = +prompt('请取款')
+                money = money - num2
+                num = +prompt('请选择您的操作：/1.存款/2.取款/3.查看余额/4.退出')
+            }
+            while (num === 3) {
+                alert(`余额是${money}`)
+                num = +prompt('请选择您的操作：/1.存款/2.取款/3.查看余额/4.退出')
+            }
+            while (num === 4) {
+                break
+            }
+        }
+    </script>
+</body>
+
+</html>

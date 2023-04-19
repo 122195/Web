@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .box {
+            width: 600px;
+            margin: 50px auto;
+            display: flex;
+            font-size: 25px;
+            line-height: 40px;
+        }
+
+        .qs {
+
+            width: 450px;
+            height: 40px;
+            color: red;
+
+        }
+
+        .btns {
+            text-align: center;
+        }
+
+        .btns button {
+            width: 120px;
+            height: 35px;
+            margin: 0 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>随机点名</h2>
+    <div class="box">
+        <span>名字是：</span>
+        <div class="qs">这里显示姓名</div>
+    </div>
+    <div class="btns">
+        <button class="start">开始</button>
+        <button class="end">结束</button>
+    </div>
+
+    <script>
+        let arr = ['马超', '黄忠', '赵云']
+        function getrandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+
+        // 1. 获取元素
+        let qs = document.querySelector('.qs')
+        let start = document.querySelector('.start')
+        let end = document.querySelector('.end')
+        // 2. 开始注册事件
+        // timer 要是全局变量
+        let timer = 0
+        // random 要是全局变量
+        let random = 0
+        start.addEventListener('click', function () {
+            // 间歇函数随机抽取数据
+            timer = setInterval(function () {
+                random = getrandom(0, arr.length - 1)
+                qs.innerHTML = arr[random]
+            }, 25)
+            if (arr.length === 1) {
+                start.disabled = true
+                end.disabled = true
+                // console.log('没了');
+            }
+        })
+        // 3. 点击结束按钮停止定时器
+        end.addEventListener('click', function () {
+            clearInterval(timer)
+            // 删除数组元素
+            arr.splice(random, 1)
+            // console.log(arr);
+
+        })
+    </script>
+</body>
+
+</html>

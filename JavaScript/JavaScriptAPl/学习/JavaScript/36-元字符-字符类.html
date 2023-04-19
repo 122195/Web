@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 后面的字符串只要包含abc中任意一个字符，都返回true
+        console.log(/[abc]/.test('abc')); // true
+        console.log(/[abc]/.test('a')); // true
+        console.log(/[abc]/.test('b')); // true
+        console.log(/[abc]/.test('c')); // true
+        console.log(/[abc]/.test('die')); // false
+        // 2. []里面加上 - 连字符
+        // 使用连字符 - 表示一个范围
+        console.log(/^[a-z]$/.test('c')); // true
+    </script>
+</body>
+
+</html>

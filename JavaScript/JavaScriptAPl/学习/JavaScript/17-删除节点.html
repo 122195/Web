@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <ul>
+        <li>ok</li>
+    </ul>
+    <script>
+        let btn = document.querySelector('button')
+        let ul = document.querySelector('ul')
+        btn.addEventListener('click', function () {
+            ul.removeChild(ul.children[0])
+        })
+        // 注意：
+                // 如果不存在父子关系则删除不成功
+                // 删除节点和隐藏节点(display: none)有区别的：隐藏节点还是存在的，但是删除，则从html中删除节点
+    </script>
+</body>
+
+</html>

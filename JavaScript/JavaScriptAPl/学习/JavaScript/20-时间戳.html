@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 可以利用将来的时间戳减去现在的时间戳就是剩余的时间毫秒数
+        // 1.使用getTime()方法
+        let date = new Date()
+        console.log(date.getTime());
+        // 2.简写 +new Date()
+        console.log(+new Date());
+        console.log(+new Date('2023-2-6 18:00:00')); // 指定时间的时间戳
+        // 3.使用Date.now()
+        console.log(Date.now());
+        // 无需实例化
+        // 但是只能得到当前的时间戳，而前面两种可以返回指定时间的时间戳
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 转换为数字型
+        // 1. Number(数据)
+        // 转成数字类型
+        console.log(Number('10')); // 数字型
+        // 2. parseInt(数据)
+        // 转换为数字型，只保留整数，没有四舍五入
+        console.log(parseInt('10')); // 10
+        console.log(parseInt('10.111')); // 10
+        // 3. parseFloat(数据)
+        // 转换为数字型，可以保留小数
+        console.log(parseFloat('10.999')); // 10.999
+        // 区别：
+        // 1. Number() 只能放数字类型的字符，不能放abc这种的
+        console.log(Number('10.10abc')); // NaN  not a number
+        // 2. parseFloat和parseInt 可以过滤里面的字符
+        console.log(parseFloat('10.01abc')); // 10.10
+        console.log(parseInt('10.1abc')); // 10
+
+        // 转换为字符型(String)
+        console.log(String(10)); // 字符型
+        let age = 18;
+        console.log(age.toString()); // 字符型
+        // 括号里面如果是2就是转换为二进制
+        console.log(age.toString(2)); // 转换为二进制
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>1 ok</li>
+        <li>2 ok</li>
+    </ul>
+    <script>
+        // 创造出一个新的网页元素，再添加到网页内，一般先创建节点，然后插入节点
+        // 创建元素节点方法：
+        // `document.createElement('标签名')`
+        // 1.创建新的标签节点
+        let div = document.createElement('div')
+        // 2.追加节点
+        let ul = document.querySelector('ul')
+        let li = document.createElement('li')
+        // 2.父元素.appendChild 只能追加在后面
+        li.innerHTML = '你好'
+        ul.appendChild(li)
+        // 插入到父元素的某个子元素的前面：`父元素.insertBefore(要插入的元素，在哪个元素前面)`
+        ul.insertBefore(li, ul.children[1])
+    </script>
+</body>
+
+</html>

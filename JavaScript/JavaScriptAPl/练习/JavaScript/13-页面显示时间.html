@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 50px;
+            background-color: pink;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        let arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+        getTime() // 先调用一次函数，省去了一秒的空白期
+        setInterval(getTime, 1000)
+        function getTime() {
+            // 实例化时间
+            let date = new Date()
+            let year = date.getFullYear()
+            let month = date.getMonth()
+            let Date1 = date.getDate()
+            let hours = date.getHours()
+            let minutes = date.getMinutes()
+            let seconds = date.getSeconds()
+            let day = date.getDay()
+            let div = document.querySelector('div')
+            div.innerHTML = `今天是${year}年${month}月${Date1}日 ${hours}:${minutes}:${seconds} ${arr[day]}`
+        }
+    </script>
+</body>
+
+</html>

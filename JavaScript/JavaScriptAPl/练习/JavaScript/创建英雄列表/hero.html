@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/hero.css">
+</head>
+
+<body>
+	<a href="javascript:" id="create">创建英雄列表</a>
+	<ul class="list">
+	</ul>
+	<!-- <script src="js/hero.js"></script> -->
+	<script>
+		// 后的的数据
+		// datas = [{},{},{}]
+		let datas = [
+			{ name: '司马懿', imgSrc: '01.jpg' },
+			{ name: '女娲', imgSrc: '02.jpg' },
+			{ name: '百里守约', imgSrc: '03.jpg' },
+			{ name: '亚瑟', imgSrc: '04.jpg' },
+			{ name: '虞姬', imgSrc: '05.jpg' },
+			{ name: '张良', imgSrc: '06.jpg' },
+			{ name: '安其拉', imgSrc: '07.jpg' },
+			{ name: '李白', imgSrc: '08.jpg' },
+			{ name: '阿珂', imgSrc: '09.jpg' },
+			{ name: '墨子', imgSrc: '10.jpg' },
+			{ name: '鲁班', imgSrc: '11.jpg' },
+			{ name: '嬴政', imgSrc: '12.jpg' },
+			{ name: '孙膑', imgSrc: '13.jpg' },
+			{ name: '周瑜', imgSrc: '14.jpg' },
+			{ name: 'XXX', imgSrc: '15.jpg' },
+			{ name: 'XXX', imgSrc: '16.jpg' },
+			{ name: 'XXX', imgSrc: '17.jpg' },
+			{ name: 'XXX', imgSrc: '18.jpg' },
+			{ name: 'XXX', imgSrc: '19.jpg' },
+			{ name: 'XXX', imgSrc: '20.jpg' }
+		];
+		// 功能:点击创建元素
+		// 点击a元素,创建新的li放到ul中
+		// 创建li,里面还有img,还有src地址,title属性
+		// 一个图片对应一个li,一个图片的地址和title实际上就是我们datas数组里面的一个对象
+		// 获取元素
+		let create = document.querySelector('#create')
+		let list = document.querySelector('.list')
+		create.addEventListener('click', function () {
+			for (let i = 0; i < datas.length; i++) {
+				// 创建li
+				let li = document.createElement('li')
+				// 放到ul里面
+				list.appendChild(li)
+				// 创建img
+				let img = document.createElement('img')
+				// 放到li里面
+				li.appendChild(img)
+				img.src = 'uploads/heros/' + datas[i].imgSrc
+				img.title = datas[i].name
+			}
+
+		})
+	</script>
+</body>
+
+</html>

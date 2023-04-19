@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>okok</div>
+    <script>
+        let box = document.querySelector('div')
+        // box是对象
+        // 对象.属性 = 值   不识别标签
+        // (1)元素.innerText属性
+        // 将文本内容添加 / 更新到任意标签位置
+        // 文本中包含的标签不会被解析
+        box.innerText = '你好你好'
+        // (2)元素.innerHTML属性
+        // 将文本内容添加 / 更行到任意标签位置
+        // 文本中包含的标签会被解析
+        box.innerHTML = '<strong>你好你好</strong>'
+    </script>
+</body>
+
+</html>

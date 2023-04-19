@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 数组(Array)是一种可以按顺序保存数据的数据类型
+        // (1)声明语法
+        let 数据名 = [数据1, 数据2, 数据3];
+        let names = ['小明', '小刚', '小红'];
+        // 数组是按顺序保存，所有每个数据都有自己的编号
+        // 计算机中的编号从0开始，所以小明的编号为0，小刚编号为1，以此类推
+        // 在数组中，数据的编号也叫索引或下标
+        // 数据可以存储任意类型的数据
+
+        // (2)取值语法
+        // 数组名[下标]
+        // let names = ['小明','小刚','小红']
+        names[0] // 小明
+        names[1] // 小刚
+
+        // (3)一些术语
+        // 1. 元素：数组中保存的每个数据都叫数组元素
+        // 2. 下标：数组中数据的编号
+        // 3. 长度：数组中数据的个数，通过数组的length属性获得
+        // let names = ['小明', '小刚', '小红']
+        console.log(names[0]) // 小明
+        console.log(names[1]) // 小刚
+        console.log(names.length) // 3
+
+        // (4) 遍历数组
+        // 用循环把数组中每个元素都访问到，一般会用for循环遍历
+        // 语法
+        for (let i = 0; i < 数组名.length; i++) {
+            数组名[i]
+        }
+        let nums = [10, 20, 30, 40, 50]
+        for (let i = 0; i < nums.length; i++) {
+            document.write(nums[i])
+        }
+    </script>
+</body>
+
+</html>

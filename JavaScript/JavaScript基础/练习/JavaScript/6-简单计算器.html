@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 用户输入2个数字，然后输入+ - * /任何一个，可以计算结果
+        let num1 = +prompt()
+        let num2 = +prompt()
+        let num3 = prompt('输入运算符')
+        switch (num3) {
+            case '+':
+                alert(`选择的是加法，结果是：${num1 + num2}`)
+                break
+            case '-':
+                alert(`选择的是减法，结果是：${num1 - num2}`)
+                break
+            case '*':
+                alert(`选择的是乘法，结果是：${num1 * num2}`)
+                break
+            case '/':
+                alert(`选择的是除法，结果是：${num1 / num2}`)
+                break
+            default:
+                alert('输入的不是运算符')
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 找到跟小括号里数据全等的case值，并执行里面对应的代码
+        // 若没有全等 === 的则执行default里的代码
+        let num = +prompt()
+        switch (num) {
+            case 1:
+                alert(1)
+                break
+            case 2:
+                alert(2)
+                break
+            case 3:
+                alert(3)
+                break
+            default:
+                alert('没有数据')
+        }
+        // 注意事项：
+            // 1. switch case语句一般用于等值判断，不适合于区间判断
+            // 2. suitch case一般需要配合break关键字使用 没有break会使用case穿透
+    </script>
+</body>
+
+</html>

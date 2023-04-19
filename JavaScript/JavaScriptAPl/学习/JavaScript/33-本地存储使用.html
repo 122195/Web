@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 存储数据 localStorage.setItem('键', '值')
+        localStorage.setItem('uname', '你好')
+        // 获取数据 localStorage.getItem('键')
+        console.log(localStorage.getItem('uname'));
+        // 删除数据 localStorage.removeItem('uname')
+        localStorage.removeItem('uname')
+        // 1.存储复杂数据类型
+        let obj = {
+            uname: '刘德华',
+            age: 17,
+            address: '你好你好'
+        }
+        // 复杂数据类型进行存储一定要转换为JSON字符串进行存储
+        localStorage.setItem('obj', JSON.stringify(obj))
+        // JSON格式的写法，属性和值都是双引号进行包含
+        // let obj = {
+        //     "uname": "刘德华",
+        //     "age": "17",
+        //     "address": "你好你好"
+        // }
+        // 2.取数据可以使用JSON.parse() 将json字符串转换为对象
+        console.log(JSON.parse(localStorage.getItem('obj')));
+    </script>
+</body>
+
+</html>

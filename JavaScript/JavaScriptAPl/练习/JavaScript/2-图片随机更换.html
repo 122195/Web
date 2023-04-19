@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../images/1.webp" alt="">
+    <script>
+        // (1)设置/修改元素常用属性
+        // 获取元素 图片
+        let img = document.querySelector('img')
+        function fun(max, min) {
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+        let random = fun(6, 1)
+        // 修改元素属性 src
+        img.src = `../images/${random}.webp`
+        img.title = '德华'
+    </script>
+</body>
+
+</html>

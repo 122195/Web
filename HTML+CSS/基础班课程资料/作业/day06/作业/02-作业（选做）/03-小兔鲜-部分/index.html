@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      /* 去掉默认样式 */
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      body {
+        background-color: #ccc;
+      }
+
+      .box {
+        width: 1245px;
+        height: 473px;
+        margin: 100px auto;
+      }
+      .box .header {
+        height: 67px;
+      }
+      .box .header h1 {
+        height: 67px;
+        font-size: 29px;
+        color: #333;
+        font-weight: 400;
+        float: left;
+      }
+
+      .box .header h1 span {
+        font-size: 16px;
+        color: #999;
+        margin-left: 34px;
+      }
+      .box .header .more {
+        float: right;
+      }
+      .box .hot li {
+        float: left;
+        height: 405px;
+        width: 304px;
+        background-color: #fff;
+        margin-right: 8px;
+        text-align: center;
+      }
+
+      .box .hot li img {
+        width: 305px;
+        display: block;
+      }
+
+      .box .hot li:last-child {
+        margin-right: 0px;
+      }
+
+      .box .hot a p:nth-child(2) {
+        height: 40px;
+        margin-top: 22px;
+        font-size: 21px;
+        color: #333;
+      }
+
+      .box .hot a p:nth-child(3) {
+        color: #999;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="header">
+        <h1>人气推荐<span>人气爆款 不容错过</span></h1>
+        <span class="more">更多 ></span>
+      </div>
+      <ul class="hot">
+        <li>
+          <a href="#">
+            <img src="./imgs/popular_1.jpg" alt="" />
+            <p>特惠推荐</p>
+            <p>我猜得到 你的需要</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="./imgs/popular_2.jpg" alt="" />
+            <p>爆款推荐</p>
+            <p>我猜得到 你的需要</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="./imgs/popular_3.jpg" alt="" />
+            <p>场景使用一站买全</p>
+            <p>我猜得到 你的需要</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="./imgs/popular_4.jpg" alt="" />
+            <p>领卷中心</p>
+            <p>我猜得到 你的需要</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

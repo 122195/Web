@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+    </style>
+    <script>
+        // 加载外部资源(如图片，外联css和javascript等)加载完毕时触发的事件
+        // 有时候需要等页面资源全部处理完了做一些事情
+        // 老代码喜欢把script写在head中，这时候直接找dom元素找不到
+        window.addEventListener('load', function () {
+            let div = document.querySelector('div')
+            console.log(div);
+        })
+        // 注意：不光可以监听整个页面资源加载完毕，也可以针对某个资源绑定load事件
+    </script>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>

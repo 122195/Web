@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let time = +prompt();
+        function fn(t) {
+            let h = parseInt(t / 60 / 60 % 24) // 小时
+            let m = parseInt(t / 60 % 60) // 分钟
+            let s = parseInt(t % 60) // 秒数
+            h = h < 10 ? '0' + h : h
+            m = m < 10 ? '0' + m : m
+            s = s < 10 ? '0' + s : s
+            return `${h}小时${m}分钟${s}秒`
+        }
+        let num = fn(time)
+        console.log(num);
+    </script>
+</body>
+
+</html>

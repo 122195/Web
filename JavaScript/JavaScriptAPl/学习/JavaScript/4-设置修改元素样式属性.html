@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 1. 获取元素
+        let div = document.querySelector('div')
+        // 2. 改变背景颜色 style
+        div.style.backgroundColor = 'pink'
+        div.style.width = '300px'
+        div.style.height = '300px'
+        // 注意：
+        // 1. 修改样式通过style属性引出
+        // 2. 如果属性有`-`连接符，需要转换为小驼峰命名法
+        // 3. 赋值的时候，需要的时候不要忘记加css单位
+    </script>
+</body>
+
+</html>

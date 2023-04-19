@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 赋值运算符 = 左侧的{ } 用于批量声明变量，右侧对象的属性值将被赋值给左侧的变量
+        // 2. 对象属性的值将被赋值给与属性名相同的变量
+        // 3. 注意解构的变量名不要和外面的变量名冲突否则报错
+        // 4. 对象中找不到与变量名一致的属性时变量值为undefined
+        // let { uname, age } = { uname: 'nihao', age: 18 }
+        // console.log(uname);
+        // console.log(age);
+        // 给新的变量名赋值
+        // 冒号表示 什么值：赋值给谁
+        // let { uname: username, age } = { uname: 'nihao', age: 18 }
+        // console.log(username);
+        // console.log(age);
+        // 解构数组对象
+        // let pig = [
+        //     {
+        //         uname: '佩奇',
+        //         age: 18
+        //     }
+        // ]
+        // let [{ uname, age }] = pig;
+        // console.log(uname);
+        // console.log(age);
+        // 多级对象解构
+        let pig = {
+            name: 'Hello',
+            family: {
+                mother: '1',
+                father: '1',
+                sister: '1'
+            }
+        }
+        let { name, family: { mother, father, sister } } = pig
+        console.log(name);
+        console.log(mother);
+        console.log(father);
+        console.log(sister);
+    </script>
+</body>
+
+</html>

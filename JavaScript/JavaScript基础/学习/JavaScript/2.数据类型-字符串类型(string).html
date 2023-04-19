@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 通过单引号('')，双引号("")或反引号(`)包裹的数据都叫字符串，单引号和双引号没有本质上的区别推荐使用单引号
+        let user_name = '小明'; // 使用单引号
+        let gender = "男"; // 使用双引号
+        let str = '123'; // 看上去是数字，但是用引用号包裹了就成了字符串了
+        let str1 = ''; // 这种情况叫空字符串
+        /* 注意事项：
+            1. 无论单引号或是双引号必须成对使用
+            2. 单引号/双引号可以互相嵌套，但是不以自己嵌套自己
+            3. 必要时可以使用转义符\，输出单引号或双引号 */
+        // 字符串拼接
+        document.write('你' + '好'); // 你好
+        let uname = '你';
+        let song = '好';
+        document.write(uname + song); // 你好
+    </script>
+</body>
+
+</html>

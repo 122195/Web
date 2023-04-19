@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            margin: 100px auto;
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        // 因为默认就有冒泡模式的存在，所以容易导致事件影响到父级元素
+        // 若想把事件就限制在当前元素内，就需要阻止事件流动
+        // 阻止事件流动需要拿到事件对象
+        // 事件对象.stopPropagation()
+        // 此方法可以阻断事件流动传播，不光在冒泡阶段有效，捕获阶段也有效
+        let fa = document.querySelector('.father')
+        let son = document.querySelector('.son')
+        fa.addEventListener('click', function (e) {
+            alert(11)
+            e.stopPropagation()
+        })
+        son.addEventListener('click', function (e) {
+            alert(22)
+            e.stopPropagation()
+        })
+        document.addEventListener('click', function (e) {
+            alert(33)
+        })
+    </script>
+</body>
+
+</html>

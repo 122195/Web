@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 输出1~100数字
+        /* let i = 1
+        while (i <= 100) {
+            console.log(i)
+            i++
+        } */
+        // 2. 计算1加到100的总和并输出
+        /*  let num = 1
+         let num1 = 0
+         while (num <= 100) {
+             num1 = num1 + num
+             num++
+         }
+         console.log(num1); */
+        // 3. 计算1-100之间的所有偶数和
+        let i = 1
+        let num = 0
+        while (i <= 100) {
+            if (i % 2 === 0) {
+                num = num + i
+            }
+            i++
+        }
+        console.log(num);
+    </script>
+</body>
+
+</html>

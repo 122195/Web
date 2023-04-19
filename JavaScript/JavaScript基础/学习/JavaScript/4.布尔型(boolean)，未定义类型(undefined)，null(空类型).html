@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // (1)布尔型(boolean)
+        // 表示肯定或否定时在计算机中对应的是布尔类型数据
+        // 它有两个固定的值true和false，表示肯定的数据用true(真)，表示否定的数据用false(假)
+        console.log(true);
+        console.log(false);
+
+        // (2)未定义类型(undefined)
+        // 未定义是比较特殊的类型，只有一个值undefined
+        // 什么情况出现未定义类型？
+        // 只声明变量，不赋值的情况下，变量的默认值为undefined，一般很少直接为某个变量赋值为undefined
+        let age // 声明变量但是未赋值
+        console.log(age); // 输出 undefined
+        // 使用场景：
+        // 开发中经常声明一个变量，等待传送过来的数据
+        // 如果我们不知道这个数据是否传递过来，此时我们可以通过检测这个变量是不是undefined，就判断用户是否有数据传递过来
+
+        // (3)null(空类型)
+        // null 表示值为空
+        let obj = null;
+        console.log(obj); // null
+
+// null和undefined区别：
+// 1. undefined表示没有赋值
+// 2. null表示赋值了，但是内容为空
+
+// 使用场景：
+// 官方解释：把null作为尚未创建的对象
+// 白话：将来有个变量里面存放的是一个对象，但是对象还没有创建好，可以先给个null
+    </script>
+</body>
+
+</html>

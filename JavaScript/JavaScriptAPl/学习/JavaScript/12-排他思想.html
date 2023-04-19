@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pink {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="pink">第1个</button><button>第2个</button><button>第3个</button><button>第4个</button><button>第5个</button>
+    <script>
+        let btns = document.querySelectorAll('button')
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].addEventListener('click', function () {
+                // 找出唯一一个类，删除
+                document.querySelector('.pink').classList.remove('pink')
+                // 给当前的添加pink
+                this.classList.add('pink')
+            })
+        }
+    </script>
+</body>
+
+</html>

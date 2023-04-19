@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 600px;
+            text-align: center;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        /* caption {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        } */
+
+        tr {
+            height: 40px;
+            cursor: pointer;
+        }
+
+        table tr:nth-child(1) {
+            background-color: #ddd;
+        }
+
+        table tr:not(:first-child):hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <table>
+        <caption>学生信息表</caption>
+        <tr>
+            <td>序号</td>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>家乡</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>小明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>河南省</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>小明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>河南省</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>小明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>河南省</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>小明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>河南省</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>小明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>河南省</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>小明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>河南省</td>
+        </tr>
+        </tbody> -->
+    </table>
+    <script>
+        let students = [
+            { name: '小明', age: 18, gender: '男', hometown: '河南省' },
+            { name: '小红', age: 19, gender: '女', hometown: '湖北省' },
+            { name: '小刚', age: 17, gender: '男', hometown: '湖南省' },
+            { name: '小丽', age: 16, gender: '女', hometown: '河北省' },
+        ]
+        /* // 打印对象
+        console.log(students[0].name)
+        // 遍历数组
+        for (let i = 0; i < students.length; i++) {
+            // console.log(students[i]);
+            for (let k in students[i]) {
+                console.log(students[k]);
+            }
+        } */
+        // 打印表格头部
+        document.write(`
+        <table>
+        <caption>学生信息表</caption>
+        <tr>
+            <td>序号</td>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>家乡</td>
+        </tr>
+        `)
+        for (let i = 0; i < students.length; i++) {
+            document.write(`
+                <tr>
+                    <td>${i + 1}</td>
+                    <td>${students[i].name}</td>
+                    <td>${students[i].age}</td>
+                    <td>${students[i].gender}</td>
+                    <td>${students[i].hometown}</td>
+                </tr>
+            `)
+        }
+        document.write(`</table>`)
+    </script>
+</body>
+
+</html>

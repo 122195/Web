@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>一个盒子</div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        // 获取元素
+        // (1)选择匹配的第一个元素
+        // document.querySelector('css选择器')
+        // 参数：
+        // 包含一个或多个有效的css选择器字符串
+        // 返回值：
+        // css选择器匹配的第一个元素，一个HTMLElement对象
+        // 如果没有匹配到，则返回null
+        let div = document.querySelector('div')
+        console.log(div);
+        // (2)获取多个元素
+        // document.querySelectorAll('css选择器')
+        // 参数：z`
+        // 包含一个或多个有效的css选择器字符串
+        // 返回值：
+        // css选择器匹配的NodeList对象合集
+        // 得到的是一个伪数组：
+        // 有长度有索引号的数组
+        // 但是没有pop() push()等数组方法
+        // 想要得到里面的每一个对象，则需要遍历(for)的方式获得
+        // 注意事项：哪怕只有一个元素，通过querySelectorAll()获取过来的也是一个伪数组，里面只有一个元素而已
+        let lis = document.querySelectorAll('ul li')
+        console.log(lis);
+    </script>
+</body>
+
+</html>

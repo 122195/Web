@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 查询对象：
+        // 对象.属性或者对象['属性']，对象.方法()
+        let obj = {
+            uname: '小明',
+            age: 18
+        }
+        // 2. 重新赋值：
+        // 对象.属性 = 值
+        obj.age = 81
+        console.log(obj);
+        // 对象.方法 = function () { }
+        obj.sing = function () {
+            console.log('hi');
+        }
+        console.log(obj);
+        // 3. 对象添加新的数据：
+        // 对象名.新属性名 = 新值
+        // 会去对象里面找是否有num这个属性，如果有则更新修改，如果没有则新增这个属性
+        obj.num = 'Nihao'
+        // 4. 删除对象中属性：
+        // delete对象名.属性名
+        delete obj.uname
+        console.log(obj);
+    </script>
+</body>
+
+</html>

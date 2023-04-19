@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            uname: '小明',
+            age: 18,
+            sex: '男'
+        }
+        // 语法：
+        // for (let k in 对象名) {}
+        // k 是变量
+        for (let k in obj) {
+            console.log(k); // 获取过来的是obj的属性名
+            console.log(obj[k]); // 属性值
+            // k === 'unmae' k里面存的是字符串的属性名
+        }
+    </script>
+</body>
+
+</html>

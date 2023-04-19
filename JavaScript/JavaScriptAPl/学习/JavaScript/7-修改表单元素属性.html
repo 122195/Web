@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" value="你好">
+    <button>按钮</button>
+    <input type="checkbox" name="" id="" class="checked">
+    <script>
+        let input = document.querySelector('input')
+        console.log(input.value);
+        input.value = 'hello'
+        input.type = 'password'
+        let btn = document.querySelector('button')
+        btn.disabled = true // 禁用按钮，false启用按钮
+        let checked = document.querySelector('.checked')
+        checked.checked = false
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const o = { uname: 'nihao', age: 18 }
+        // 1.获得所有的属性名Object.keys(o)
+        console.log(Object.keys(o)); // 返回的是数组
+        // 2.获得所有的属性值Object.values(o)
+        console.log(Object.values(o)); // 返回的是数组
+        // 3.对象的拷贝
+        const oo = {}
+        Object.assign(oo, o)
+        console.log(o);
+        Object.assign(o, { gender: 'man' }) // 给o对象添加一个新的属性
+        console.log(o);
+    </script>
+</body>
+
+</html>

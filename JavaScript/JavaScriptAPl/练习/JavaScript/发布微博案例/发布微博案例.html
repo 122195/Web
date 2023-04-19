@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/weibo.css">
+</head>
+
+<body>
+  <div class="w">
+    <div class="controls">
+      <img src="images/tip.png" alt=""><br>
+      <textarea placeholder="说点什么吧..." id="area" cols="30" rows="10" maxlength="200"></textarea>
+      <div>
+        <span class="useCount">0</span>
+        <span>/</span>
+        <span>200</span>
+        <button id="send">发布</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 获取文本域 area
+    let area = document.querySelector('#area')
+    let useCount = document.querySelector('.useCount')
+    // 绑定事件 input 用户输入事件,检测用户输入的内容
+    area.addEventListener('input', function () {
+      // area.value 可以得到输入的值
+      // area.value.length 可以得到输入值的长度
+      useCount.innerHTML = area.value.length
+    })
+  </script>
+</body>
+
+</html>

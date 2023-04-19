@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr1 = [1, 2, 3, 4]
+        console.log(...arr1);
+        // 展开运算符的运用场景：求数组最大值(最小值),合并数组
+        // 1.求最大值
+        let arr2 = [1, 2, 3, 4]
+        console.log(Math.max(...arr2));
+        // 2.合并数组
+        let arr3 = [...arr1, ...arr2]
+        console.log(arr3)
+    </script>
+</body>
+
+</html>
