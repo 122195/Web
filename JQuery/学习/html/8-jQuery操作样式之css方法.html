@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        $(function () {
+            // 1. 参数只写属性名，则返回的是属性值
+            // console.log($('div').css('width'));  // 返回的是带单位的字符串 200px
+            // 2.参数是属性名，属性值，逗号分隔，是设置一组样式，属性必须加引号，值如果是数字可以不用跟单位和引号
+            // $('div').css('width', '300px');
+            // $('div').css('width', 300);
+            // 3.参数可以是对象形式，方便设置多组样式，属性名和属性值用冒号隔开，属性可以不用加引号，单位也可以不用加
+            // 如果是复合属性则必须采取驼峰命名法，如果值不是数字，则需要加引号
+            $('div').css({
+                width: 400,
+                height: 400,
+                backgroundColor: 'green'
+            })
+        })
+    </script>
+</body>
+
+</html>

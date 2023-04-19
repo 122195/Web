@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li>第一个</li>
+        <li>第二个</li>
+        <li>第三个</li>
+        <li>第四个</li>
+        <li>第五个</li>
+        <li>第六个</li>
+    </ul>
+    <ol>
+        <li>第一个</li>
+        <li>第二个</li>
+        <li>第三个</li>
+        <li>第四个</li>
+        <li>第五个</li>
+        <li>第六个</li>
+    </ol>
+    <script>
+        // 获取第一个li元素
+        $('ul li:first').css('background', 'red')
+        // 获取最后一个li元素
+        $('ul li:last').css('background', 'green')
+        // 获取到的li元素中，选择索引号为2的元素，索引号index从0开始
+        $('ul li:eq(2)').css('background', 'skyblue')
+        // 获取到的li元素中，选择索引号为奇数的元素
+        $('ol li:odd').css('background', 'blue')
+        // 获取到的li元素中，选择索引号为偶数的元素
+        $('ol li:even').css('background', 'red')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <div class="nav">
+        <p>第一个p</p>
+        <div>
+            <p>第二个p</p>
+        </div>
+    </div>
+    <ol>
+        <li>我是ol</li>
+        <li>我是ol</li>
+        <li class="item">我是ol 的li</li>
+        <li>我是ol</li>
+        <li>我是ol</li>
+        <li>我是ol</li>
+    </ol>
+    <ul>
+        <li>我是ol li</li>
+        <li>我是ol li</li>
+        <li>我是ol li</li>
+        <li>我是ol li</li>
+        <li>我是ol li</li>
+        <li>我是ol li</li>
+    </ul>
+    <div class="current">有current</div>
+    <div>没有current</div>
+    <script>
+        $(function () {
+            // 1.父 parent() 返回的是最近一级的父级元素 亲爸爸
+            console.log($('.son').parent());
+            // 2.子 
+            // (1)children() 类似于子代选择器
+            // $('.nav').children('p').css('color', 'red')
+            // (2)find() 类似于后代选择器 可以选里面所有的儿子和孙子
+            $('.nav').find('p').css('color', 'red')
+            // 3.兄弟元素 
+            // (1)查找兄弟节点，不包括自己本身
+            // $('ol .item').siblings('li').css('color', 'red')
+            // (2)查找当前元素之后所有的同辈元素
+            $('.item').nextAll().css('color', 'blue')
+            // (3)查找当前元素之前所有的同辈元素
+            $('.item').prevAll().css('color', 'blue')
+            // 4.选择n个元素
+            $('ul li').eq(2).css('color', 'green')
+            // 5.判断是否有某个类名，有则返回true，没有则返回false
+            console.log($('div:eq(4)').hasClass('current'));
+            console.log($('div:last').hasClass('current'));
+        })
+    </script>
+</body>
+
+</html>

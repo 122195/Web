@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 1.用原生js获取来的对象就是DOM对象
+        var mydiv = document.querySelector('div') // mydiv是DOM对象
+        console.dir(mydiv);
+        // 2.jQuery方法获取的元素就是jQuery对象，本质：通过$把DOM元素进行了包装
+        $('div'); // $('div')是一个jQuery对象
+        console.dir($('div'));
+        // 3.jQuery对象本质是：利用$对DOM对象包装后产生的对象(伪数组形式存储)
+    </script>
+</body>
+
+</html>
