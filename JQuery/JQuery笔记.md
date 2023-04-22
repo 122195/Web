@@ -421,6 +421,54 @@ $(function () {
 
 ### 4.jQuery属性操作
 
+#### 4.1设置或获取元素固有属性值prop()
+
+所谓元素固有属性就是元素本身自带的属性，比如<a>元素里面的href，比如<input>里面的type
+
+1. 获取属性语法
+
+   ~~~ javascript
+   prop('属性')
+   ~~~
+
+2. 设置属性语法
+
+   ~~~ javascript
+   prop('属性','属性值')
+   ~~~
+
+#### 4.2设置或获取元素自定义属性值attr()
+
+用户自己给元素添加的属性，我们称为自定义属性，比如给div添加index=1
+
+1. 获取属性语法
+
+   ~~~ javascript
+   attr('属性') // 类似原生getAttribute()
+   ~~~
+
+2. 设置属性语法
+
+   ~~~ javascript
+   attr('属性','属性值') // 类似原生setAttribute()
+   ~~~
+
+#### 4.3数据缓存data()
+
+data()方法可以在指定的元素上存取数据，并不会修改DOM元素结构，一旦页面刷新，之前存放的数据都将被移除
+
+1. 附加数据语法
+
+   ~~~ javascript
+   data('key','value') // 向被选元素附加数据
+   ~~~
+
+2. 获取数据语法
+
+   ~~~ javascript
+   console.log(data('key')) // 向被选元素获取数据
+   ~~~
+
 ### 5.jQuery文本属性值
 
 ### 6.jQuery元素操作
