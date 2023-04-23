@@ -28,6 +28,16 @@ $(function () {
         // console.log(n);
         n++;
         $(this).siblings('.itxt').val(n)
+        // 计算小计模块 根据文本框的值 乘以 当前商品的价格 就是商品的小计
+        // 当前商品的价格 p
+        // var p = $(this).parent().parent().siblings('.p-price').html();
+        var p = $(this).parents('.p-num').siblings('.p-price').html();
+        // console.log(p);
+        p = p.substr(1) // 把￥符号去掉
+        var price = (p * n).toFixed(2) // 保留两位小数
+        // 小计模块
+        // $(this).parent('.p-sum').parent().siblings('.p-sum').html('￥' + p * n)
+        $(this).parents('.p-num').siblings('.p-sum').html('￥' + price)
     })
     $('.decrement').click(function () {
         // 得到当前兄弟文本框的值
@@ -39,5 +49,19 @@ $(function () {
         }
         n--;
         $(this).siblings('.itxt').val(n)
+        // 计算小计模块 根据文本框的值 乘以 当前商品的价格 就是商品的小计
+        // 当前商品的价格 p
+        var p = $(this).parents('.p-num').siblings('.p-price').html();
+        // console.log(p);
+        p = p.substr(1)
+        // 小计模块
+        $(this).parents('.p-num').siblings('.p-sum').html('￥' + (p * n).toFixed(2)) // 保留两位小数
+    })
+    // 用户修改文本框的值 计算 小计模块
+    $('.itxt').change(function () {
+        var n = $(this).val();
+        var p = $(this).parents('.p-num').siblings('.p-sum').html();
+        p = p.substr(1)
+        $(this).parents('.p-num').siblings('.p-sum').html('￥' + (p * n).toFixed(2))
     })
 })
