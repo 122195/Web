@@ -494,6 +494,18 @@ val('文本内容') // 设置元素的文本内容
 
 ### 6.jQuery元素操作
 
+#### 6.1遍历元素
 
+jQuery隐式迭代是对同一类元素做了同样的操作，如果想要给同一类元素做不同的操作，就需要用到遍历
+
+语法1：
+
+~~~ javascript
+$('div').each(function (index,domEle){ xxx ;})
+~~~
+
+1. each()方法遍历匹配的每一个元素，主要用DOM处理，each每一个
+2. 里面的回调函数有2个参数：index是每个元素的索引号；demEle是每个DOM元素对象，不是jQuery对象
+3. 所以要想使用jQuery方法，需要给这个dom元素转换为jquery对象$(domEle)
 
 ### 7.jQuery尺寸，位置操作

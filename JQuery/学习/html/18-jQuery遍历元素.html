@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script>
+        $(function () {
+            let sum = 0
+            $('div').each(function (index, dom) {
+                let arr = ['red', 'green', 'blue']
+                console.log(index); // 第一个参数返回的是索引号，也可以自定义索引号名称
+                console.log(dom); //第二个参数返回的是html元素，也可以自定义名称
+                $(dom).css('color', arr[index]) // 转换成jQuery对象使用
+                sum += parseInt($(dom).text())
+            })
+            console.log(sum);
+        })
+    </script>
+</body>
+
+</html>
