@@ -508,4 +508,14 @@ $('div').each(function (index,domEle){ xxx ;})
 2. 里面的回调函数有2个参数：index是每个元素的索引号；demEle是每个DOM元素对象，不是jQuery对象
 3. 所以要想使用jQuery方法，需要给这个dom元素转换为jquery对象$(domEle)
 
+语法2：
+
+~~~ javascript
+$.each(object,function(index,element) {xxx;})
+~~~
+
+1. $.each()方法可用于遍历任何对象。主要用于数据处理，比如数组，对象
+
+2. 里面的函数有2个参数：index是每个元素的索引号；element遍历内容
+
 ### 7.jQuery尺寸，位置操作
