@@ -38,6 +38,7 @@ $(function () {
         // 小计模块
         // $(this).parent('.p-sum').parent().siblings('.p-sum').html('￥' + p * n)
         $(this).parents('.p-num').siblings('.p-sum').html('￥' + price)
+        getsum()
     })
     $('.decrement').click(function () {
         // 得到当前兄弟文本框的值
@@ -56,6 +57,7 @@ $(function () {
         p = p.substr(1)
         // 小计模块
         $(this).parents('.p-num').siblings('.p-sum').html('￥' + (p * n).toFixed(2)) // 保留两位小数
+        getsum()
     })
     // 用户修改文本框的值 计算 小计模块
     $('.itxt').change(function () {
@@ -63,5 +65,20 @@ $(function () {
         var p = $(this).parents('.p-num').siblings('.p-sum').html();
         p = p.substr(1)
         $(this).parents('.p-num').siblings('.p-sum').html('￥' + (p * n).toFixed(2))
+        getsum()
     })
+    getsum() // 页面打开调用一次这个函数
+    // 计算总计和总额模块
+    function getsum() {
+        var count = 0; // 计算总件数
+        var money = 0; // 计算总价钱
+        $('.itxt').each(function (i, ele) {
+            count += parseInt($(ele).val())
+        })
+        $('.amount-sum em').text(count)
+        $('.p-sum').each(function (i, ele) {
+            money += parseFloat($(ele).text().substr(1))
+        })
+        $('.price-sum em').text("￥" + money.toFixed(2))
+    }
 })

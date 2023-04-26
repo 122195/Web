@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li>第一个li</li>
+    </ul>
+    <div class="test">第一个div</div>
+    <script>
+        $(function () {
+            // 1. 创建元素
+            var li = $('<li>创建一个li标签</li>')
+            // 2. 添加元素
+            // (1). 内部添加
+            $('ul').append(li) // 内部添加并且放到内容的最后面
+            // $('ul').prepend(li) // 内部添加并且放到内容的最前面
+            // (2).外部添加
+            var div = $('<div>第二个div</div>')
+            $('.test').after(div) // 外部添加并且放到内容的最后面
+            // $('.test').before(div) // 外部添加并且放到内容的最前面
+            // 3. 删除元素
+            // $('ul').remove() // 删除匹配的元素(本身)
+            // $('ul').empty() // 删除匹配的元素集合中所有的子节点
+            $('ul').html("") // 清空匹配的元素里面的内容
+        })
+    </script>
+</body>
+
+</html>

@@ -518,4 +518,42 @@ $.each(object,function(index,element) {xxx;})
 
 2. 里面的函数有2个参数：index是每个元素的索引号；element遍历内容
 
+#### 6.2创建元素
+
+语法：
+
+~~~ javascript
+$("<li></li>") // 动态的创建了一个<li>
+~~~
+
+#### 6.3添加元素
+
+1.内部添加
+
+~~~ javascript
+element.append("内容")
+~~~
+
+把内容放入匹配元素内部最后面，类似原生appendChild
+
+~~~ javascript
+element.prepend("内容")
+~~~
+
+把内容放入匹配元素内部最前面
+
+>内部添加元素，生成后，它们是父子关系
+>
+>外部添加元素，生成之后，它们是兄弟关系
+
+#### 6.4删除元素
+
+~~~ javascript
+element.remove() // 删除匹配的元素(本身)
+element.empty() // 删除匹配的元素集合中所有的子节点
+element.html("") // 清空匹配的元素内容
+~~~
+
+
+
 ### 7.jQuery尺寸，位置操作
