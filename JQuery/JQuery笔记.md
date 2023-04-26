@@ -554,6 +554,12 @@ element.empty() // 删除匹配的元素集合中所有的子节点
 element.html("") // 清空匹配的元素内容
 ~~~
 
-
-
 ### 7.jQuery尺寸，位置操作
+
+|                语法                |                        用法                        |
+| :--------------------------------: | :------------------------------------------------: |
+|          width()/height()          |      取得匹配元素宽度和高度 只算width/height       |
+|     innerWidth()/innerHieght()     |        取得匹配元素宽度和高度值包含padding         |
+|     outerWidth()/outerHeight()     |    取得匹配元素宽度和高度值包含padding，border     |
+| outerWidth(true)/outerHeight(true) | 取得匹配元宽度和高度值 包含padding，border，margin |
+
