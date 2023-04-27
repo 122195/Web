@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            padding: 10px;
+            border: 15px solid red;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        $(function () {
+            // 1. width() / height() 获取设置元素 width和height大小
+            console.log($("div").width()); // 返回200像素大小不带单位是数字型的
+            $("div").width(300) // 修改像素
+            // 2.innderWidth() / innerHeright() 获取设置元素 width和height + padding大小
+            console.log($("div").innerWidth()); // 返回的是宽度和内边距的值 320
+            console.log($("div").innerHeight()); // 返回的是高度和内边距的值 220
+            // 3.outerWidth() / outerHeright() 获取设置元素 width和height + padding + border
+            console.log($("div").outerWidth()); // 返回的是宽度、内边距、边框的值 350
+            console.log($("div").outerHeight()); // 返回的是高度、内边距、边框的值 250
+            // 4.outerWidth(true) / outerHeright(true) 获取设置width和height + padding + border + margin
+            console.log($("div").outerWidth(true)); // 返回的是宽度、内边距、边框、外边距的值 390
+            console.log($("div").outerHeight(true)); // 返回的是高度、内边距、边框、外边距的值 290
+        })
+    </script>
+</body>
+
+</html>
