@@ -563,3 +563,6 @@ element.html("") // 清空匹配的元素内容
 |     outerWidth()/outerHeight()     |    取得匹配元素宽度和高度值包含padding，border     |
 | outerWidth(true)/outerHeight(true) | 取得匹配元宽度和高度值 包含padding，border，margin |
 
+- 以上参数为空，则是获取相应值，返回的是数字型
+- 如果参数为数字，则是修改相应值
+- 参数可以不必写单位
