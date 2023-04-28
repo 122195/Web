@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        body {
+            height: 2000px;
+        }
+
+        .back {
+            position: fixed;
+            widows: 50px;
+            height: 50px;
+            background-color: pink;
+            right: 30px;
+            bottom: 100px;
+            display: none;
+        }
+
+        .container {
+            width: 900px;
+            height: 500px;
+            background-color: skyblue;
+            margin: 400px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="back">返回顶部</div>
+    <div class="container"></div>
+    <script>
+        $(function () {
+            $(document).scrollTop(100); // 设置数值，打开页面直接跳到这个位置
+            // 被卷去的头部 scrollTop() / 被卷去的左侧 scrollLeft()
+            var boxTop = $('.container').offset().top
+            $(window).scroll(function () {
+                console.log($(document).scrollTop());
+                if ($(document).scrollTop() >= boxTop) {
+                    $('.back').fadeIn();
+                } else {
+                    $('.back').fadeOut();
+                }
+            })
+            // 返回顶部
+            $('.back').click(function () {
+                // $(document).scrollTop(0);
+                $('body,html').stop().animate({ // 不能写文档 只能写html和body元素做动画
+                    scrollTop: 0
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
