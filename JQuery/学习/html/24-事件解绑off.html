@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <script>
+        $(function () {
+            $('div').on({
+                click: function () {
+                    console.log('点击了');
+                },
+                mouseover: function () {
+                    console.log('鼠标经过了');
+                }
+            })
+            $('ul').on('click', 'li', function () {
+                alert(11)
+            })
+            // 事件解绑 off
+            // $('div').off() // 解绑div上面所有的事件
+            // $('div').off('click') // 解绑div上面点击事件
+            $('ul').off('click', 'li')
+        })
+    </script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <ul>
+        <li>你好</li>
+        <li>你好</li>
+        <li>你好</li>
+    </ul>
+</body>
+
+</html>
