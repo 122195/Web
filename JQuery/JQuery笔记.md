@@ -590,6 +590,47 @@ element.html("") // 清空匹配的元素内容
 
 ### 8.1事件注册
 
+单个事件注册
+
+语法：
+
+~~~ javascript
+element.事件(function () {})
+$('div').click(function () {事件处理程序})
+~~~
+
+其他事件和原生基本一致
+
+比如mouseover,mouseout,blur,focus,change,keydown,keyup,resize,scoll等
+
 ### 8.2事件处理
+
+**事件处理on()绑定事件**
+
+on()方法在匹配元素上绑定一个或多个事件的事件处理函数
+
+语法：
+
+~~~ javascript
+element.on(events,[selector],fn)
+~~~
+
+1. events:一个或多个用空格分隔的事件类型，如click或keydown
+2. selector：元素的子元素选择器
+3. fn：回调函数即绑定在元素身上的侦听函数
+
+on()方法优势2
+
+可以事件委派操作，事件委派的定义就是，把原来加给子元素身上的事件绑定在父元素身上，就是把事件委派给父元素
+
+~~~ javascript
+$('ul').on('click', 'li', function () {
+            alert(11)
+        })
+~~~
+
+on()方法优势3：
+
+动态创建的元素，click()没有办法绑定事件，on()可以给动态生成的元素绑定事件
 
 ### 8.3事件对象
