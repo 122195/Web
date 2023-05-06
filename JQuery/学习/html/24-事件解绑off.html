@@ -24,6 +24,10 @@
             // $('div').off() // 解绑div上面所有的事件
             // $('div').off('click') // 解绑div上面点击事件
             $('ul').off('click', 'li')
+            // one()只能触发一次事件
+            $('p').one('click', function () {
+                alert(11)
+            })
         })
     </script>
     <style>
@@ -42,6 +46,7 @@
         <li>你好</li>
         <li>你好</li>
     </ul>
+    <p>只能点击一次</p>
 </body>
 
 </html>

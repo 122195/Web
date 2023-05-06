@@ -586,9 +586,9 @@ element.html("") // 清空匹配的元素内容
 - scrollTop()方法设置或返回被选元素被卷去的头部
 - scrollLeft()方法设置或返回被选元素被卷去的左侧
 
-## 8.jQuery事件
+## 3.jQuery事件
 
-### 8.1事件注册
+### 1.事件注册
 
 单个事件注册
 
@@ -603,9 +603,9 @@ $('div').click(function () {事件处理程序})
 
 比如mouseover,mouseout,blur,focus,change,keydown,keyup,resize,scoll等
 
-### 8.2事件处理
+### 2.事件处理
 
-**事件处理on()绑定事件**
+**2.1事件处理on()绑定事件**
 
 on()方法在匹配元素上绑定一个或多个事件的事件处理函数
 
@@ -633,7 +633,7 @@ on()方法优势3：
 
 动态创建的元素，click()没有办法绑定事件，on()可以给动态生成的元素绑定事件
 
-**事件处理off()解绑事件**
+**2.2事件处理off()解绑事件**
 
 off()方法可以移除通过on()方法添加的事件处理程序
 
@@ -643,6 +643,49 @@ $('div').off('click') // 解绑div上面点击事件
 $('ul').off('click', 'li') // 解绑事件委托
 ~~~
 
+如果有的事件只想触发一次，可以使用one()来绑定事件
 
+**2.3自动触发事件trigger()**
 
-### 8.3事件对象
+有些事件希望自动触发，比如轮播图自动播放功能跟点击右侧按钮一致，可以利用定时器自动触发右侧按钮点击事件，不必鼠标点击触发
+
+~~~ javascript
+第一种：element.click() // 第一种简写形式
+第二种：element.trigger('事件') // 第二种自动触发模式
+第三种：element.triggerHandler('事件') // 第三种自动触发模式，不会触发元素的默认行为
+~~~
+
+### 3.事件对象
+
+事件被触发，就会有事件对象的产生
+
+~~~ javascript
+element.on(events,[selector],function(event){})
+~~~
+
+阻止默认行为：event.preventDefault() 或者 return false
+
+阻止冒泡：event.stopPropagation()
+
+## 4.jQuery里面的其他方法
+
+### jQuery拷贝对象
+
+如果想要把某个对象拷贝(合并)给另外一个对象使用，此时可以使用$.extend()方法
+
+语法：
+
+~~~ javascript
+$.extend([deep],target,object1,[objectN])
+~~~
+
+1. deep：如果设为true为深拷贝，默认为false浅拷贝
+2. target：要拷贝的目标对象
+3. object1：待拷贝到第一个对象的对象
+4. objectNL：待拷贝到第N个对象的对象
+5. 浅拷贝是把被拷贝的对象复杂数据类型中的地址拷贝给目标对象，修改目标对象会影响被拷贝对象
+6. 深拷贝，前面加true，完全克隆(拷贝的对象，而不是地址)，修改目标对对象不会影响被拷贝对象，深拷贝把里面的数据完全复制一份给目标对象，如果里面有不冲突的属性，会合并到一起
+
+### 多库共存
+
+### jQuery插件

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('div').on('click', function () {
+                alert(11)
+            })
+            // 1.元素.事件()
+            // $('div').click();
+            // 2.元素.trigger('事件')
+            $('div').trigger('click')
+            // 3.元素.triggerHandler('事件')，不会触发元素的默认行为
+            $('div').triggerHandler('click')
+
+        })
+    </script>
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>
