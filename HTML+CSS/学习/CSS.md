@@ -460,7 +460,7 @@ img标签是一个标签，不设置宽高默认会以原尺寸显示
 
 - a,span ,b,u,i,s,strong,ins,em,del
 
-### 6.3行内块元素
+### 6.3 行内块元素
 
 ~~~css
 属性：display: inline-block
@@ -563,7 +563,7 @@ border: 10px solid red;
 四个值 padding: 10px 20px 30px 40px; 上设置为10px，右设置为20px，下设置为30px，左设置为
 ~~~
 
-### 8.3 内边距
+### 8.3 外边距
 
 作用：设置边框以外，盒子与盒子之间的距离
 
