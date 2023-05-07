@@ -694,5 +694,3 @@ $.extend([deep],target,object1,[objectN])
 
 1. 把里面的$符号统一改为jQuery，比如jQuery('div')
 2. jQuery变量规定新的名称：$.noConflict() var xx = $.noConflict();
-
-### jQuery插件
