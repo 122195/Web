@@ -890,15 +890,88 @@ console.log(liss);
 **常见实例方法**
 
 1. 实例属性`length`用来获取字符串的长度(重点)
+
+   ~~~ javascript
+   let str = '焦虑且颓废'
+   console.log(str.length); // 5
+   ~~~
+
 2. 实例方法`split('分隔符')`用来将字符串拆分成数组(重点)
+
+   ~~~ javascript
+   let str = 'pink,red'
+   let arr = str.split(',')
+   console.log(arr); // ['pink','red']
+   let str1 = '2023-5-7'
+   let arr1 = str1.split('-')
+   console.log(arr1); // ['2023','5','7']
+   ~~~
+
 3. 实例方法`substring(需要截取的第一个字符的索引[,结束的索引号])`用于字符串截取(重点)
+
+   ~~~ javascript
+   let str = '焦虑且颓废'
+   console.log(str.substring(3, 5)); // 颓废
+   ~~~
+
 4. 实例方法`startsWith(检测字符串[,检测位置索引号])`检测是否以某字符开头(重点)
+
+   ~~~ javascript
+   let str = '焦虑且颓废'
+   console.log(str.startsWith('焦')); // true
+   console.log(str.startsWith('颓', 3)); // true
+   ~~~
+
 5. 实例方法`includes(搜索的字符串[,检测位置索引号])`判断一个字符串是否包含在另一个字符串中，根据情况返回true或false(重点)
+
+   ~~~ javascript
+   let str = '焦虑且颓废'
+   console.log(str.includes('焦虑')); // true
+   ~~~
+
 6. 实例方法`toUpperCase`用于将字母转换成大写
+
+   ~~~ javascript
+   let str = 'hello world'
+   console.log(str.toUpperCase()); // HELLO WORLD
+   ~~~
+
 7. 实例方法`toLowerCase`用于将字母转换成小写
+
+   ~~~ javascript
+   let str = 'HELLO WORLD'
+   console.log(str.toLowerCase()); // hello world
+   ~~~
+
 8. 实例方法`indexOf`检测是否包含某字符
+
+   ~~~ javascript
+   let str = '焦虑且颓废'
+   console.log(str.indexOf('且')); // 返回索引值
+   ~~~
+
 9. 实例方法`endsWith`检测是否以某字符结尾
+
+   ~~~ javascript
+   let str = '焦虑且颓废'
+   console.log(str.endsWith('且')); // false
+   console.log(str.endsWith('废')); // true
+   ~~~
+
 10. 实例方法`replace`用于替换字符串，支持正则匹配
+
+    ~~~ javascript
+    let str = '123124'
+    console.log(str.replace('1', '9')); // 923124 只替换第一个匹配到的数字
+    ~~~
+
 11. 实例方法`match`用于查找字符串，支持正则匹配
+
+    ~~~ javascript
+    let str = '123124'
+    console.log(str.match('1'));
+    ~~~
+
+    
 
 ### 4.Number
