@@ -688,4 +688,11 @@ $.extend([deep],target,object1,[objectN])
 
 ### 多库共存
 
+需要一个解决方案，让jQuery和其他的js库不存在冲突，可以同时存在，这就叫多库共存
+
+**jQuery解决方案**
+
+1. 把里面的$符号统一改为jQuery，比如jQuery('div')
+2. jQuery变量规定新的名称：$.noConflict() var xx = $.noConflict();
+
 ### jQuery插件
