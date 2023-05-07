@@ -806,7 +806,7 @@ let arr = [1, 2, 3]
 console.log(arr.join('-'));
 ~~~
 
-2. 实例方法 find 查找数组，返回符合测试条件的第一个数组元素值，如果没有符合条件的则返回undefined
+2. 实例方法 `find` 查找数组，返回符合测试条件的第一个数组元素值，如果没有符合条件的则返回undefined
 
 ~~~javascript
  let arr1 = [
@@ -821,7 +821,7 @@ console.log(arr.join('-'));
 	]
 ~~~
 
-3. 实例方法 every 检测数组所有元素是否符合指定条件，如果所有元素都通过检测返回true，否则返回false
+3. 实例方法 `every` 检测数组所有元素是否符合指定条件，如果所有元素都通过检测返回true，否则返回false
 
     ~~~javascript
     let arr2 = [1, 2, 3]
@@ -829,7 +829,7 @@ console.log(arr.join('-'));
     console.log(flag); // true
     ~~~
 
-4. 实例方法 some 检测数组中的元素是否满足指定条件，如果数组中有元素满足条件返回true，否则返回false
+4. 实例方法 `some` 检测数组中的元素是否满足指定条件，如果数组中有元素满足条件返回true，否则返回false
 
 ~~~ javascript
 let arr3 = [1, 2, 3]
@@ -846,14 +846,14 @@ let arr6 = arr4.concat(arr5)
 console.log(arr6);
 ~~~
 
-6. 实例方法 sort 对原数组单元值排序，按照字母的首字母排序，并返回数组
+6. 实例方法 `sort` 对原数组单元值排序，按照字母的首字母排序，并返回数组
 
 ~~~ javascript
 let arr7 = ['ba', 'ac', 'cv', 'da']
 console.log(arr7.sort());
 ~~~
 
-7. 实例方法 reverse 反转数组，方法将数组中元素的位置颠倒，并返回该数组。数组的第一个元素会变成最后一个，数组的最后一个元素变成第一个。该方法会改变原数组
+7. 实例方法 `reverse` 反转数组，方法将数组中元素的位置颠倒，并返回该数组。数组的第一个元素会变成最后一个，数组的最后一个元素变成第一个。该方法会改变原数组
 
 ~~~ javascript
 let arr8 = [6, 5, 4, 3, 2, 1]
@@ -972,6 +972,10 @@ console.log(liss);
     console.log(str.match('1'));
     ~~~
 
-    
-
 ### 4.Number
+
+Number是内置的构造函数，用于创建数值
+
+常用方法：
+
+`toFixed()`设置保留小数位的长度
