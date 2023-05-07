@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 2.实例方法`split('分隔符')`用来将字符串拆分成数组(重点)，把字符串转换为数组
+        // let str = 'pink,red'
+        // let arr = str.split(',')
+        // console.log(arr);
+        // let str1 = '2023-5-7'
+        // let arr1 = str1.split('-')
+        // console.log(arr1);
+        // 3.实例方法`substring(需要截取的第一个字符的索引[,结束的索引号])`用于字符串截取(重点)
+        // 3.1 如果省略结束的索引号，默认去到最后
+        // 3.2 结束的索引号不包含想要截取的部分
+        // let str = '焦虑且颓废'
+        // console.log(str.substring(3, 5));
+        // 4.实例方法`startsWith(检测字符串[,检测位置索引号])`检测是否以某字符开头(重点) 返回值是true或false
+        // let str = '焦虑且颓废'
+        // console.log(str.startsWith('焦')); // true
+        // console.log(str.startsWith('颓', 3)); // true
+        // 5.实例方法`includes(搜索的字符串[,检测位置索引号])`判断一个字符串是否包含在另一个字符串中，根据情况返回true或false(重点)
+        let str = '焦虑且颓废'
+        console.log(str.includes('焦虑')); // true
+    </script>
+</body>
+
+</html>
