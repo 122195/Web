@@ -1,54 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/inputnumber.css" />
-    <link rel="stylesheet" href="./css/index.css" />
-    <title>水果列表</title>
-  </head>
 
-  <body>
-    <div class="app-container" id="app">
-      <!-- 顶部banner -->
-      <div class="banner-box"><img src="./img/fruit.jpg" alt="" /></div>
-      <!-- 面包屑 -->
-      <div class="breadcrumb">
-        <span>🏠</span>
-        /
-        <span>水果列表</span>
-      </div>
-      <!-- table -->
-      <div class="main">
-        <div class="table">
-          <!-- 头部 -->
-          <div class="thead">
-            <div class="tr">
-              <div class="th">名字</div>
-              <div class="th">图片</div>
-              <div class="th">简介</div>
-              <div class="th">操作</div>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/inputnumber.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <title>水果列表</title>
+</head>
+
+<body>
+  <div class="app-container" id="app">
+    <!-- 顶部banner -->
+    <div class="banner-box"><img src="./img/fruit.jpg" alt="" /></div>
+    <!-- 面包屑 -->
+    <div class="breadcrumb">
+      <span>🏠</span>
+      /
+      <span>水果列表</span>
+    </div>
+    <!-- table -->
+    <div class="main">
+      <div class="table">
+        <!-- 头部 -->
+        <div class="thead">
+          <div class="tr">
+            <div class="th">名字</div>
+            <div class="th">图片</div>
+            <div class="th">简介</div>
+            <div class="th">操作</div>
           </div>
-          <div class="tbody">
-            <div class="tr">
-              <div class="td">火龙果</div>
-              <div class="td">
-                <img alt="" src="./img/火龙果.png" />
-              </div>
-              <div class="td">
-                <span class="my-input__inner count">一种好吃的水果</span>
-              </div>
-              <div class="td">
-                <button class="info">查看详情</button>
-              </div>
+        </div>
+        <div class="tbody">
+          <div class="tr">
+            <div class="td">火龙果</div>
+            <div class="td">
+              <img alt="" src="./img/火龙果.png" />
+            </div>
+            <div class="td">
+              <span class="my-input__inner count">一种好吃的水果</span>
+            </div>
+            <div class="td">
+              <button class="info">查看详情</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <script>
+    // (1)实例化ajax对象
+    let xhr = new XMLHttpRequest()
+    // (2)设置请求方法和地址
+    // get请求的数据直接添加到url的后面 格式是url?key = value
+    xhr.open('get', 'https://autumnfish.cn/fruitApi/fruits')
+    // (3)发送请求
+    xhr.send()
+    // (4)注册回调函数
+    xhr.onload = function () {
+      // console.log(xhr.responseText);
+      let res = JSON.parse(xhr.responseText)
+      console.log(res);
+      document.querySelector('.tbody').innerHTML = res.data.map(item =>
+        `
+          <div class="tr">
+            <div class="td">${item.name}</div>
+            <div class="td">
+              <img alt="" src="${item.icon}" />
+            </div>
+            <div class="td">
+              <span class="my-input__inner count">${item.info}</span>
+            </div>
+            <div class="td">
+              <button class="info">查看详情</button>
+            </div>
+          </div>`).join('')
+    }
+  </script>
 
-    
-  </body>
+</body>
+
 </html>
