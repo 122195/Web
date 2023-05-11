@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- rowspan合并单元格的个数跨行合并，将多行的单元格垂直合并 -->
+    <!-- colspan合并单元格的个数跨列合并，将多列的单元格水平合并 -->
+    <!-- 注意点：只有同一个结构标签中的单元格才能合并，不能跨结构标签合并(不能跨: thead，tbody，tfoot) -->
+    <table border="2" width="200" height="300">
+        <caption>
+            <h3>学生成绩单</h3>
+        </caption>
+        <!-- 表格的头部 -->
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>姓名</th>
+                <th>评语</th>
+            </tr>
+        </thead>
+        <!-- 表格的主体 -->
+        <tbody>
+            <tr>
+                <td>熊大</td>
+                <td rowspan="2">100</td>
+                <td>熊大最聪明</td>
+            </tr>
+            <tr>
+                <td>熊二</td>
+                <!-- <td>100</td> -->
+                <td>熊二最笨</td>
+            </tr>
+        </tbody>
+        <!-- 表格的底部 -->
+        <tfoot>
+            <tr>
+                <td>光头强</td>
+                <td colspan="2">90</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>
