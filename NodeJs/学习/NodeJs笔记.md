@@ -133,7 +133,7 @@ ws.close();
 
 >程序打开一个文件需要消耗资源，流式写入可以减少打开关闭文件的此时，流式写入方式适用于大文件写入或频繁写入的场景，`writeFile`适合于写入频繁较低的场景
 
-#### 1-5.文件写入场景
+#### 1-5.`文件写入场景`
 
 文件写入在计算机中是一个非常常见的操作，下面的场景都用到了文件写入
 
@@ -155,7 +155,7 @@ ws.close();
 |   `readFileSync`   | 同步读取 |
 | `createReadStream` | 流式读取 |
 
-#### 2-1.readFile异步读取
+#### 2-1.`readFile异步读取`
 
 语法：
 
@@ -187,7 +187,7 @@ fs.readFile('./观书有感.txt', (err, data) => {
 })
 ~~~
 
-#### 2-2.readFileSync同步读取
+#### 2-2.`readFileSync同步读取`
 
 语法：
 
@@ -213,7 +213,7 @@ let data = fs.readFileSync('./观书有感.txt')
 console.log(data.toString()); // 十六进制转换为字符串
 ~~~
 
-#### 2-3.createReadStream流式读取
+#### 2-3.`createReadStream流式读取`
 
 语法：
 
@@ -246,13 +246,207 @@ rs.on('end', () => {
 })
 ~~~
 
-
-
 ### 3.文件移动与重命名
+
+在Node.js中，我们可以使用`rename`或`renameSync`来移动或重命名文件或文件夹
+
+语法：
+
+~~~ javascript
+fs.rename(oldPath,naePath,callback)
+fs.renameSync(oldPath,newPath)
+~~~
+
+参数说明：
+
+- `oldPath`文件当前的路径
+- `newPath`文件新的路径
+- `callback`操作后的回调
+
+~~~ javascript
+// 1.导入 fs 模块
+let fs = require('fs')
+// 2.调用 rename 方法
+fs.rename('./座右铭.txt', './论语.txt', err => {
+    if (err) {
+        console.log('操作失败');
+        return
+    }
+    console.log('操作成功');
+})
+// 文件移动
+fs.rename('./data.txt', '../资料/data.txt', err => {
+    if (err) {
+        console.log('操作失败');
+        return
+    }
+    console.log('操作成功');
+})
+~~~
+
+
 
 ### 4.文件删除
 
+在Node.js中，我们可以使用`unlink`或`unlinkSync`来删除文件
+语法：
+
+~~~ javascript
+fs.unlink(path,callback)
+fs.unlinkSync(path)
+~~~
+
+参数说明：
+
+- path 文件路径
+- callback 操作后的回调
+
+代码示例：
+
+~~~ javascript
+// 1.导入 fs 模块
+const { log } = require('console')
+let fs = require('fs')
+// 2.调用 unlink 方法
+fs.unlink('./观书有感.txt', err => {
+    if (err) {
+        console.log('删除失败');
+    }
+    console.log('删除成功');
+})
+// 调用 rm 方法
+fs.rm('./论语.txt', err => {
+    if (err) {
+        console.log('删除成功');
+    }
+    console.log('删除成功');
+})
+~~~
+
 ### 5.文件夹操作
+
+借助Node.js的能力，我们可以对文件夹进行`创建`,`读取`，`删除`等操作
+
+|         方法          |    说明    |
+| :-------------------: | :--------: |
+|   `mkdir/mkdirSync`   | 创建文件夹 |
+| `readdir/readdirSync` | 读取文件集 |
+|   `rmdir/rmdirSync`   | 删除文件夹 |
+
+#### 5-1 `mkdir`创建文件夹
+
+在Node.js中，我们可以使用`mkdir`或`mkdirSync`来创建文件夹
+
+语法：
+
+~~~ javascript
+fs.mkdir(path[,optins],callback)
+fs.mkdirSync(path[,options])
+~~~
+
+参数说明：
+
+- path 文件路径
+- options 选项配置(可选)
+- callback 操作后的回调
+
+代码示例：
+
+~~~ javascript
+let fs = require('fs')
+// 2.创建文件夹 mkdir mk = make制作 dir directory = 文件夹
+fs.mkdir('./html', err => {
+    if (err) {
+        console.log('创建失败');
+        return
+    }
+    console.log('创建成功');
+})
+fs.mkdir('./a/d/c', { recursive: true }, err => {
+    if (err) {
+        console.log('创建失败');
+        return
+    }
+    console.log('创建成功');
+})
+~~~
+
+#### 5-2 readdir读取文件夹
+
+在Node.js中，我们可以使用`readdir`或`readdirSync`来读取文件夹
+
+语法：
+~~~ javascript
+fs.readdir(path[,optins],callback)
+fs.readdirSync(path[,options])
+~~~
+
+参数说明：
+
+- path 文件路径
+- options 选项配置(可选)
+- callback 操作后的回调
+
+代码示例：
+
+~~~ javascript
+fs.readdir('../资料/代码', (err, data) => {
+fs.readdir('./', (err, data) => { // 读取当前文件夹
+    if (err) {
+        console.log('读取失败');
+        return
+    }
+    console.log(data);
+})
+~~~
+
+#### 5-3 rmdir删除文件夹
+
+在Node.js中，我们可以使用`rmdir`或`rmdirSync`来删除文件夹
+
+语法：
+
+~~~ javascript
+fs.rmdir(path[,optins],callback)
+fs.rmdirSync(path[,options])
+~~~
+
+参数说明：
+
+- path 文件路径
+- options 选项配置(可选)
+- callback 操作后的回调
+
+代码示例：
+
+~~~ javascript
+// 2-4 删除文件夹 rmdir
+fs.rmdir('./html', err => {
+    if (err) {
+        console.log('删除失败');
+        return
+    }
+    console.log('删除成功');
+})
+// 递归删除 不推荐使用
+fs.rmdir('./a', { recursive: true }, err => {
+    if (err) {
+        console.log('删除成功');
+        return
+    }
+    console.log('删除失败');
+})
+// 官方建议使用
+fs.rm('./a', { recursive: true }, err => {
+    if (err) {
+        console.log('删除失败');
+        return
+    }
+    console.log('删除成功');
+})
+~~~
+
+
 
 ### 6.查看资源状态
 
