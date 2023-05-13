@@ -133,7 +133,120 @@ ws.close();
 
 >程序打开一个文件需要消耗资源，流式写入可以减少打开关闭文件的此时，流式写入方式适用于大文件写入或频繁写入的场景，`writeFile`适合于写入频繁较低的场景
 
+#### 1-5.文件写入场景
+
+文件写入在计算机中是一个非常常见的操作，下面的场景都用到了文件写入
+
+- 下载文件
+- 安装文件
+- 保存程序日志，如git
+- 编辑器保持文件
+- 视频录制
+
+>当需要持久化保存数据的时候，应该想到文件写入
+
 ### 2.文件读取
+
+文件读取顾名思义，就是通过程序从文件中取出其中的数据，我们可以使用如下几种方法：
+
+|        方法        |   说明   |
+| :----------------: | :------: |
+|     `readFile`     | 异步读取 |
+|   `readFileSync`   | 同步读取 |
+| `createReadStream` | 流式读取 |
+
+#### 2-1.readFile异步读取
+
+语法：
+
+~~~ javascript
+fs.readFile(path[,options],callback)
+~~~
+
+参数说明：
+
+- path文件路径
+- options选项配置
+- callback回调函数
+
+返回值：undefined
+
+代码示例：
+
+~~~ javascript
+// 1.引入fs模块
+let fs = require('fs')
+// 2.异步读取
+fs.readFile('./观书有感.txt', (err, data) => {
+    if (err) {
+        console.log('读取失败~~~');
+        return;
+    }
+    console.log(data); // 接收过来的是十六进制 buffer
+    console.log(data.toString()); // 十六进制转换为字符串
+})
+~~~
+
+#### 2-2.readFileSync同步读取
+
+语法：
+
+~~~ javascript
+fs.readFileSync(path[,options])
+~~~
+
+参数说明：
+
+- path文件路径
+- options选项配置
+
+返回值：`string | Buffer`
+
+代码示例：
+
+~~~ javascript
+// 1.引入fs模块
+let fs = require('fs')
+// 2.同步读取
+let data = fs.readFileSync('./观书有感.txt')
+// console.log(data); // 接收过来的是十六进制 buffer
+console.log(data.toString()); // 十六进制转换为字符串
+~~~
+
+#### 2-3.createReadStream流式读取
+
+语法：
+
+~~~ javascript
+fs.createReadStream(path[,options])
+~~~
+
+参数说明：
+
+- path文件路径
+- options选项配置(可选)
+
+返回值：`Object`
+
+代码示例：
+
+~~~ javascript
+// 1.引入fs模块
+let fs = require('fs')
+// 2.创建流式读取
+let rs = fs.createReadStream('./笑看风云.mp4')
+// 3.绑定data事件
+rs.on('data', chunk => {
+    // console.log(chunk);
+    console.log(chunk.length); // 65536 字节 = 64KB
+})
+// 4.end 可选事件
+rs.on('end', () => {
+    console.log('读取完成');
+})
+~~~
+
+
 
 ### 3.文件移动与重命名
 
