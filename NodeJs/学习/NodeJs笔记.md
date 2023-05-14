@@ -450,3 +450,89 @@ fs.rm('./a', { recursive: true }, err => {
 
 ### 6.查看资源状态
 
+在Node.js中，我们可以使用`stat`或`statSync`来查看资源的详情信息
+
+语法：
+
+~~~ javascript
+fs.stat(path[,options],callback)
+fs.statSync(path[,options])
+~~~
+
+参数说明：
+
+- path 文件夹路径
+- options 选项配置(可选)
+- callback 操作后的回调
+
+代码示例：
+
+~~~ javascript
+// 1.导入 fs 模块
+let fs = require('fs')
+// 2.stat 方法
+fs.stat('./笑看风云.mp4', (err, data) => {
+    if (err) {
+        console.log('操作失败');
+        return
+    }
+    // console.log(data);
+    // 查看文件类型
+    // isFile 查看这个资源是不是文件
+    console.log(data.isFile()); // true
+    // isDirectory 查看目标资源是不是一个文件夹
+    console.log(data.isDirectory()); // false
+})
+~~~
+
+结果值对象结构：
+
+- `size`		文件体积
+- `birthtime`   创建时间
+- `mtime`       最后修改时间
+- `isFile `     检测是否为文件
+- `isDirectory` 检测是否为文件夹
+
+## path模块
+
+path模块提供了操作路径的功能，我们将介绍如下几个较为常用的结构API：
+
+|       API       |           说明           |
+| :-------------: | :----------------------: |
+| `path.resolve`  | 拼接规范的绝对路径(常用) |
+|   `path.sep`    | 获取操作系统的路径分隔符 |
+|  `path.parse`   |    解析路径并返回对象    |
+| `path.basename` |    获取路径的基础名称    |
+| `path.dirname`  |     获取路径的目录名     |
+| `path.extname`  |     获得路径的扩展名     |
+
+代码示例：
+
+~~~ javascript
+// 导入 fs
+let fs = require('fs')
+let path = require('path')
+console.log(__dirname + '/index.html');
+// resolve 解决
+// console.log(path.resolve(__dirname, './index.html'))
+// console.log(path.resolve(__dirname, 'index.html'))
+
+
+// sep 分隔符 
+console.log(path.sep); // 获取操作系统的路径分隔符
+
+// parse 是一个方法
+console.log(__filename); // 保存的是文件的绝对路径
+let str = 'D:\\桌面\\Web\\Web\\NodeJs\\学习> node .\\13-path.js'
+console.log(path.parse(str));
+
+// basename 获取文件名
+console.log(path.basename(str));
+
+// dirname 获取路径部分
+console.log(path.dirname(str));
+
+// extname 获取文件扩展名
+console.log(path.extname(str));
+~~~
+
