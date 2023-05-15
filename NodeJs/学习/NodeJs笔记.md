@@ -536,3 +536,51 @@ console.log(path.dirname(str));
 console.log(path.extname(str));
 ~~~
 
+## HTTP协议
+
+### 一、概念
+
+`HTTP(hypertext transport protocol)`协议；`中文叫超文本传输协议`
+
+是一种基于TCP/IP的应用层通信协议
+
+这个协议详细规定了浏览器和万维网服务器之间互相通信的规则
+
+协议中主要规定了两个方面的内容
+
+- 客户端：用来向服务器发送数据，可以被称之为请求报文
+- 服务端：向客户端返回数据，可以被称之为响应报文
+
+> 报文：可以简单理解为就是一堆字符串
+
+### 七、创建HTTP服务
+
+使用`nodejs`创建HTTP服务
+
+#### 7.1操作步骤
+
+~~~ javascript
+// 1. 导入 http 模块
+let http = require('http')
+// 2. 创建服务对象
+// request 意为请求, 是对请求报文的封装对象，通过 request 对象可以获得请求报文的数据
+// response 意为响应. 是对响应报文的封装对象, 通过 response 对象可以设置响应报文
+let server = http.createServer((request, response) => {
+    response.end('Hello HTTP Server'); // 设置响应体
+});
+// 3. 监听端口，启动服务
+server.listen(9000, () => {
+    console.log('服务已经启动....');
+})
+~~~
+
+> `http.createServer`里的回调函数的执行时机：当接收到HTTP请求的时候，就会执行
+
+#### 7.2测试
+
+浏览器请求对应端口
+
+~~~ javascript
+http://127.0.0.1:9000
+~~~
+
