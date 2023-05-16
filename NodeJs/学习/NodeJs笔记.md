@@ -710,7 +710,7 @@ http://127.0.0.1:9000
 |   请求方法    |                       `request.method`                       |    *     |
 |   请求版本    |                    `request.httpVersion`                     |          |
 |   请求路径    |                        `request.url`                         |    *     |
-|    URL路径    |        ``require('url').parse(request.url).pathname``        |    *     |
+|    URL路径    |         `require('url').parse(request.url).pathname`         |    *     |
 | URL查询字符串 |        `require('uel').parse(request.url,true).query`        |    *     |
 |    请求头     |                      `request.headers`                       |    *     |
 |    请求体     | `request.on('data',function(chunk){}),rquest.on('end',function(){})` |          |
