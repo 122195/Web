@@ -730,3 +730,79 @@ http://127.0.0.1:9000
 | 设置响应状态描述 |      `response.statusMessage(用的非常少)`      |
 |  设置响应头信息  |      `response.setHeader(‘头名‘,'头值')`       |
 |    设置响应体    | `response.write('xx')`<br>`response.end('xx')` |
+
+### 十、静态资源服务
+
+静态资源是指内容长时间不发生改变的资源，例如图片，视频，CSS文件，JS文件，HTML文件，字体文件等
+
+动态资源是指内容经常更新的资源，例如百度首页，网易首页，京东搜索列表页面等
+
+#### 10.1网站根目录或静态资源目录
+
+HTTP服务在哪个文件夹中寻找静态资源，那个文件夹就是静态资源目录，也称之为网站根目录
+
+#### 10.2网页中的URL
+
+网页中的URL主要分为两大类：相对路径与绝对路径
+
+##### 10.2.1 绝对路径
+
+绝对路径可靠性强，而且相对容易理解，在项目中运用较多
+
+|       形式       |                             特点                             |
+| :--------------: | :----------------------------------------------------------: |
+| http://baidu.com |   直接向目标资源发送请求，容易理解，网站的外链会用到此形式   |
+| //baidu.com/web  | 与网页URL的协议拼接形成完整URL再发送请求，大型网站用的比较多 |
+|       /web       | 与网页URL的协议，主机名，端口拼接形成完整URL再发送请求，中小型网站 |
+
+##### 10.2.2 相对路径
+
+相对路径在发送请求时，需要与当前页面URL路径进行计算，得到完整URL后，再发送请求，学习阶段用的比较多
+
+例如当前网页url为 http://atguigu.com/course/h5.html
+
+|         形式         |                 最终的URL                 |
+| :------------------: | :---------------------------------------: |
+|   `./css/app.css`    | http://www.atguigu.com/course/css/app.css |
+|     `js/app.js`      |  http://www.atguigu.com/course/js/app.js  |
+|  `../img/logo.png`   |    http://www.atguigu.com/img/logo.png    |
+| `../../mp4/show.mp4` |    http://www.atguigu.com/mo4/show.mp4    |
+
+##### 10.2.3 网页中使用URL的场景小结
+
+包括但不限于如下场景：
+
+- a标签href
+- link标签href
+- script标签src
+- img标签src
+- video audio 标签src
+- form中的action
+- AJAX请求中的URL
+
+#### 10.4 GET和POST请求场景小结
+
+**GET请求的情况：**
+
+- 在地址栏直接输入url访问
+- 点击a链接
+- link标签引入css
+- script标签引入js
+- img标签引入图片
+- form标签中的method为get(不区分大小写)
+- ajax中的get请求
+
+**POST请求的情况：**
+
+- form标签中的method为post(不区分大小写)
+- AJAX的post请求
+
+### 十一、GET和POST请求的区别
+
+**GET和POST是HTTP协议请求的两种方式**
+
+- GET主要用来获取数据，POST主要用来提交数据
+- GET带参数请求是将参数缀到URL之后，在地址栏中输入url访问网站就是GET请求，POST带参数请求是将参数放到请求体中
+- POST请求相对GET安全一些，因为在浏览器中参数会暴露在地址栏
+- GET请求大小有限制，一般为2K，而POST请求则没有大小限制
+
