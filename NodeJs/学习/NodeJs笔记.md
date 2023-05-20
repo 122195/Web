@@ -1031,3 +1031,20 @@ npm i uniq
 | 生产依赖 |   `npm i-S uniq`<br> `npm i-save uniq`   | -S等效于-save，-S是默认选项<br> 包信息保存在package.json中`dependencies`属性 |
 | 开发依赖 | `npm i-D less`<br> `npm i-save-dev less` | -D等效于-save-dev<br> 包信息保存在package.json中`devDependencies`属性 |
 
+#### 2.5 全局安装
+
+我们可以执行安装选项`-g`进行全局安装
+
+~~~ javascript
+npm i -g nodemon
+~~~
+
+全局安装完成之后就可以在命令行的任何位置运行`nodemon`命令
+
+该命令的作用是`自动重启 node 应用程序`
+
+> 说明：
+>
+> - 全局安装的命令不受工作目录位置影响
+> - 可以通过`npm root -g`可以查看全局安装包的位置
+> - `不是所有的包都适合全局安装`,只有全局类的工具才适合，可以通过`查看包的官方文档来确定安装方法`,这里先不必太纠结
