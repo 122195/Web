@@ -981,3 +981,43 @@ node.js 在安装时会自动安装 npm ，所以如果你已经安装了 node.j
 >3. ISC 证书与 MIT 证书功能上是相同的，关于开源证书扩展阅读http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html
 >4. `package.json`可以手动创建与修改
 >5. 使用`npm init -y`或者`npm init --yes`极速创`package.json`
+
+##### 2.2.2 搜索包
+
+搜索包的方式有两种
+
+1. 命令行`npm s/search 关键字`
+2. `网站搜索`网址是`http://www.npmjs.com`
+
+##### 2.2.3 下载安装包
+
+我们可以通过`npm install`和`npm i`命令安装包
+
+~~~ javascript
+# 格式
+npm install <包名>
+npm i <包名>
+# 示例
+npm install uniq
+npm i uniq
+~~~
+
+运行之后文件夹下会增加两个资源
+
+- `node_modules 文件夹`存放下载的包
+- `package-lock.json 包的锁文件`，用来锁定包的版本
+
+> 安装`uniq`之后，`uniq`就是当前这个包的一个`依赖包`，有时会简称为`依赖`
+>
+> 比如我们创建一个包名字为A，A中安装了包名字是 B，我们就说`B 是 A 的一个依赖包`，也会说`A 依赖 B`
+
+##### 2.2.4 require 导入nmp包基本流程
+
+1. 在当前文件夹下 node_modules 中寻找同名的文件夹
+2. 在上级目录中下的 node_modules 中寻找同名的文件夹，直至找到磁盘根目录
+
+#### 2.3 生产环境与开发环境
+
+开发环境是程序员`专门用来写代码`的环境，一般是指程序员的电脑，开发环境的项目一般`只能程序员自己访问`
+
+生产环境是项目`代码正式运行`的环境，一般是指正式的服务器电脑，生产环境的项目一般`每个客户都可以访问`
