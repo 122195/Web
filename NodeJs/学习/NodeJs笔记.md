@@ -865,3 +865,119 @@ tiemo();
 >
 > - module.exports可以暴露任意数据
 > - 不能使用`exports = value`的形式暴露数据，模块内部module与exports的隐式关系`exports = module.exports={}`,返回的是目标模块中`module.exports`的值
+
+### 三、导入(引入)模块
+
+在模块中使用`require`传入文件路径即可引入文件
+
+~~~ javascript
+const tiemo = require('./me.js');
+~~~
+
+**require使用的一些注意事项：**
+
+1. 对于自己创建的模块，导入时路径建议写`相对路径`，且不能省略`./`和`../`
+2. `js`和`json`文件导入时可以不用写后缀，c/c++编写的`node`扩展文件也可以不写后缀，但是一般用不到
+3. 如果导入其他类型的文件，会以`js`文件进行处理
+4. 如果导入的路径是个文件夹，则会`首先`检测该文件夹下`package.json`文件中`main`属性对应的文件，如果存在则导入，反之如果文件不存在会报错，如果`main`属性不存在，或者`package.json`不存在，则尝试导入文件夹下的`index.js`和`index.json`,如果还是没有找到，就会报错
+5. 导入`node.js`内置模块时，直接`reuqire`模块的名字即可，无需加`./`和`../`
+
+### 四、导入模块的基本流程
+
+这里我们介绍一下`require`导入`自定义模块`的基本流程
+
+1. 将相对路径转为绝对路径，定位目标文件
+2. 缓存检测
+3. 读取目标文件代码
+4. 包裹为一个函数并执行(自执行函数)通过`arguments.callee.toString()`查看自执行函数
+5. 缓存模块的值
+6. 返回`module.exports`的值
+
+### 五、`CommonJs规范`
+
+`module.expoets`、`exports`以及`require`这些都是`CommonJs`模块化规范中的内容
+
+而Nose.js是实现了`CommonJs`模块化规范，二者关系有点像JavaScript与ECMAScript
+
+## 包管理工具
+
+### 一、概念介绍
+
+#### 1.1包是什么
+
+`包`英文单词是`package`，代表了一组特定功能的源码集合
+
+#### 1.2包管理工具
+
+管理『包』的应用软件，可以对「包」进行 下载安装 ， 更新 ， 删除 ， 上传 等操作
+
+借助包管理工具，可以快速开发项目，提升开发效率
+
+包管理工具是一个通用的概念，很多编程语言都有包管理工具，所以 掌握好包管理工具非常重要
+
+#### 1.3常用的包管理工具
+
+下面列举了前端常用的包管理工具
+
+- npm
+- yarn
+- cnpm
+
+### 二、npm
+
+npm 全称`Node Package Manager`，翻译为中文意思是『Node 的包管理工具』
+
+npm 是 node.js 官方内置的包管理工具，是 必须要掌握住的工具
+
+#### 2.1 npm的安装
+
+node.js 在安装时会自动安装 npm ，所以如果你已经安装了 node.js，可以直接使用 npm 可以通过`npm -v`查看版本号测试，如果显示版本号说明安装成功，反之安装失败
+
+#### 2.2 npm基本使用
+
+##### 2.2.1 初始化
+
+创建一个空目录，然后以此目录作为工作目录 启动命令行工具 ，执行`npm init`
+
+`npm init`命令的作用是将文件夹初始化为一个『包』，`交互式创建 package.json 文件`
+
+`package.json`是包的配置文件，每个包都必须要有`package.json`
+
+` package.json`内容示例:
+
+~~~ javascript
+{
+"name": "01_npm",
+"version": "1.0.0",
+"description": "",
+"main": "index.js",
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1"
+},
+"author": "",
+"l
+~~~
+
+属性翻译
+
+~~~ javascript
+{
+"name": "1-npm", #包的名字
+"version": "1.0.0", #包的版本
+"description": "", #包的描述
+"main": "index.js", #包的入口文件
+"scripts": { #脚本配置
+"test": "echo \"Error: no test specified\" && exit 1"
+},
+"author": "", #作者
+"license": "ISC" #开源证书
+}
+~~~
+
+>初始化的过程中还有一些注意事项： 
+>
+>1. package name (`包名`) 不能使用中文、大写，默认值是 文件夹的名称 ，所以文件夹名称也不 能使用中文和大写
+>2. version (`版本号`)要求`x.x.x`的形式定义，`x`必须是数字，默认值是`1.0.0`
+>3. ISC 证书与 MIT 证书功能上是相同的，关于开源证书扩展阅读http://www.ruanyifeng.com/blog/2011/05/how_to_choose_free_software_licenses.html
+>4. `package.json`可以手动创建与修改
+>5. 使用`npm init -y`或者`npm init --yes`极速创`package.json`
