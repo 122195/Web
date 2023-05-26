@@ -1048,3 +1048,76 @@ npm i -g nodemon
 > - 全局安装的命令不受工作目录位置影响
 > - 可以通过`npm root -g`可以查看全局安装包的位置
 > - `不是所有的包都适合全局安装`,只有全局类的工具才适合，可以通过`查看包的官方文档来确定安装方法`,这里先不必太纠结
+
+#### 2.6 安装包依赖
+
+在项目协作中有一个常用的命令就是`npm i`，通过该命令可以依据`package.json`和`package-lock.json`的依赖声明安装项目依赖
+
+~~~ javascript
+npm i
+npm install
+~~~
+
+> node_modules 文件夹大多数情况都不会存入版本库
+
+#### 2.7 安装指定版本的包
+
+项目中可能会遇到版本不匹配的情况，有时就需要安装指定版本的包，可以使用下面的命令
+
+~~~ javascript
+// 格式
+npm i <包名@版本号>
+// 示例
+npm i jquery@1.11.2
+~~~
+
+#### 2.8 删除依赖
+
+项目中可能需要删除某些不需要的包，可以使用下面的命令
+
+~~~ javascript
+// 局部删除
+`npm remove uniq`
+`npm r uniq`
+// 全局删除后
+npm remove -g nodemon
+~~~
+
+#### 2.9 配置命令别名
+
+通过配置命令别名可以更简单的执行命令
+
+配置`package.json`中的`scripts`属性
+
+~~~ javascript
+{
+	.
+	.
+	.
+	"scripts": {
+		"server": "node server.js",
+		"start": "node index.js",
+	},
+	.
+	.
+}
+~~~
+
+配置完成之后，可以使用别名执行命令
+
+~~~ javascript
+npm run server
+npm run start
+~~~
+
+不过`start`别名比较特别，使用时可以省略`run`
+
+~~~ javascript
+npm start
+~~~
+
+> 补充说明：
+>
+> - `npm start`是项目中常用的一个命令，一般用来启动项目
+> - `npm run`有自动向上级目录查找的特性，跟`require`函数也一样
+> - 对于陌生的项目，我们可以通过查看`scripts`属性来参考项目的一些操作
