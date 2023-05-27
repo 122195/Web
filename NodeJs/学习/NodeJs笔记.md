@@ -1121,3 +1121,177 @@ npm start
 > - `npm start`是项目中常用的一个命令，一般用来启动项目
 > - `npm run`有自动向上级目录查找的特性，跟`require`函数也一样
 > - 对于陌生的项目，我们可以通过查看`scripts`属性来参考项目的一些操作
+
+## express
+
+### 一、express介绍
+
+express是一个基于Node.js平台的极简，灵活的WEB应用开发框架，官方网址：http://www.expressjs.com.cn/
+
+简单来说，express是一个封装好的工具包，封装了很多功能，便于我们开发WEB应用(HTTP服务)
+
+### 二、express使用
+
+#### 2.1 express下载
+
+express本身是一个npm包，所有可以通过npm安装
+
+~~~ javascript
+npm init
+npm i express
+~~~
+
+#### 2.2 express初体验
+
+可以按照这个步骤进行操作：
+
+1. 创建js文件，键入如下代码
+
+   ~~~ javascript
+   // 1. 导入express
+   let express = require('express')
+   
+   // 2. 创建应用对象
+   let app = express();
+   
+   // 3. 创建路由
+   app.get('/home', (req, res) => {
+       res.end('hello express')
+   })
+   
+   // 4. 监听端口，启动服务
+   app.listen(3000, () => {
+       console.log('服务已启动，端口3000 正在监听中....');
+   })
+   ~~~
+
+2. 命令行下执行该脚本
+
+   ~~~ javascript
+   node<文件名>
+   # 或者
+   nodemon<文件名>
+   ~~~
+
+3. 然后在浏览器就可以访问`http://127.0.0.1:3000/home`
+
+### 三、express路由
+
+#### 3.1 什么是路由
+
+官方定义：`路由确定了应用程序如何响应客户端对特定端点的请求`
+
+#### 3.2路由的使用
+
+一个路由的组成有`请求方法`,`路径`和`回调函数`组成
+
+express中提供了一系列方法，可以很方便的使用路由，使用格式如下：
+
+~~~javascript
+app.<method>(path.callback)
+~~~
+
+代码示例：
+
+~~~ javascript
+// 1. 导入express
+let express = require('express')
+
+// 2. 创建应用对象
+let app = express();
+
+// 3. 创建路由
+app.get('/home', (req, res) => {
+    res.end('hello express')
+})
+
+app.get('/', (req, res) => {
+    res.end('home')
+})
+// post
+app.post('/login', (req, res) => {
+    res.end('login login')
+})
+// 匹配所有方法
+app.all('/test', (req, res) => {
+    res.end('test test')
+})
+
+// 404响应
+app.all('*', (req, res) => {
+    res.end('404 not Found')
+})
+// 4. 监听端口，启动服务
+app.listen(3000, () => {
+    console.log('服务已启动，端口3000 正在监听中....');
+})
+
+~~~
+
+#### 3.3获取请求参数
+
+express框架封装了一些API来方便请求报文中的数据，并且兼容原生HTTP模块的获取方式
+
+~~~ javascript
+// 1. 导入express
+let express = require('express')
+
+// 2. 创建应用对象
+let app = express();
+
+// 3. 创建路由
+app.get('/request', (req, res) => {
+    // 原生操作
+    console.log(req.method);
+    console.log(req.url);
+    console.log(req.httpVersion);
+    console.log(req.headers);
+    res.end('hello express')
+    // express框架操作
+    console.log(req.path); // 获取路径
+    console.log(req.query); // 获取查询字符串
+    // 获取ip
+    console.log(req.ip);
+    // 获取请求头
+    console.log(req.get('host')); // 获取host请求头
+})
+// 4. 监听端口，启动服务
+app.listen(3000, () => {
+    console.log('服务已启动，端口3000 正在监听中....');
+})
+~~~
+
+#### 3.4获取路由参数
+
+路由参数指的是`URL路径中的参数(数据)`
+
+~~~ javascript
+// 1. 导入express
+let express = require('express')
+
+// 2. 创建应用对象
+let app = express();
+
+// 3. 创建路由
+// app.get('/100037199931', (req, res) => {
+//     res.setHeader('content-type', 'text/html;charset=utf-8')
+//     res.end('商品详情')
+// })
+
+// app.get('/100032253039', (req, res) => {
+//     res.setHeader('content-type', 'text/html;charset=utf-8')
+//     res.end('商品详情')
+// })
+
+app.get('/:id', (req, res) => {
+    // 获取URL路由参数
+    console.log(req.params.id);
+    res.setHeader('content-type', 'text/html;charset=utf-8')
+    res.end('商品详情')
+})
+// 4. 监听端口，启动服务
+app.listen(3000, () => {
+    console.log('服务已启动，端口3000 正在监听中....');
+})
+~~~
+
