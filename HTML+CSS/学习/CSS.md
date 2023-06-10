@@ -560,7 +560,7 @@ border: 10px solid red;
 一个值 padding: 10px; 上右下左都设置为10px
 两个值 padding: 10px 10px; 上下设置为10px，左右设置为20px
 三个值 padding: 10px 20px 30px; 上设置为10px，左右设置为20px，下设置为30px
-四个值 padding: 10px 20px 30px 40px; 上设置为10px，右设置为20px，下设置为30px，左设置为
+四个值 padding: 10px 20px 30px 40px; 上设置为10px，右设置为20px，下设置为30px，左设置为40px
 ~~~
 
 ### 8.3 外边距
@@ -575,7 +575,7 @@ border: 10px solid red;
 一个值 margin: 10px; 上右下左都设置为10px
 两个值 margin: 10px 10px; 上下设置为10px，左右设置为20px
 三个值 margin: 10px 20px 30px; 上设置为10px，左右设置为20px，下设置为30px
-四个值 margin: 10px 20px 30px 40px; 上设置为10px，右设置为20px，下设置为30px，左设置为
+四个值 margin: 10px 20px 30px 40px; 上设置为10px，右设置为20px，下设置为30px，左设置为40px
 ~~~
 
 margin单方向设置的应用
