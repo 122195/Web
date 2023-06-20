@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <app></app>
+    </div>
+    <script>
+        // 定义student组件
+        const student = Vue.extend({
+            template: `
+                    <div>
+                        <h2>学生姓名：{{name}}</h2> 
+                        <h2>学生年龄：{{age}}</h2>     
+                    </div>    
+                    `,
+            data() {
+                return {
+                    name: '你好',
+                    age: 18
+                }
+            },
+        })
+        // 定义school组件
+        const school = Vue.extend({
+            template: `
+                    <div>
+                        <h2>学校名称：{{name}}</h2> 
+                        <h2>学校地址：{{address}}</h2>
+                        <student></student>   
+                    </div>    
+                    `,
+            data() {
+                return {
+                    name: '你好',
+                    address: '北京'
+                }
+            },
+            // 注册组件(局部)
+            components: {
+                student: student
+            }
+        })
+        // 定义hello组件
+        const hello = Vue.extend({
+            template: `
+                <h1>{{msg}}</h1>
+            `,
+            data() {
+                return {
+                    msg: 'hello world'
+                }
+            }
+        })
+        // 定义app组件
+        const app = Vue.extend({
+            template: `
+            <div>
+                <hello></hello>
+                <school></school>    
+            </div>
+            `,
+            components: {
+                school,
+                hello
+            },
+        })
+        new Vue({
+            el: '#root',
+            // 注册组件(局部)
+            components: { app }
+        })
+    </script>
+</body>
+
+</html>
