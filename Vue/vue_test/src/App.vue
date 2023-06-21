@@ -1,6 +1,5 @@
 <template>
     <div>
-        <img src="./assets/logo.png" alt="">
         <School></School>
         <Student></Student>
     </div>
