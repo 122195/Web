@@ -8,15 +8,10 @@
 
 <script>
 	import Student from './components/Student'
-	import School from './components/School';
+	import School from './components/School.vue';
 
 	export default {
 		name:'App',
 		components:{Student,School},
 	}
 </script>
-<style>
-	.title {
-		color: red;
-	}
-</style>

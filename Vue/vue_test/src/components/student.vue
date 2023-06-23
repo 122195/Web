@@ -1,12 +1,11 @@
 <template>
-	<div>
-		<h2 @click="showName">学生姓名：{{name}}</h2>
-		<h2>学生性别：{{sex}}</h2>
+	<div class="demo">
+		<h2 class="title">学生姓名：{{name}}</h2>
+		<h2 class="qwe">学生性别：{{sex}}</h2>
 	</div>
 </template>
 
 <script>
-	import {hunhe,hunhe2} from '../mixin'
 	export default {
 		name:'MyStudent',
 		data() {
@@ -15,11 +14,13 @@
 				sex:'男',
 			}
 		},
-		// methods: {
-		// 	showName(){
-		// 		alert(this.name)
-		// 	}
-		// },
-		mixins:[hunhe,hunhe2]
 	}
 </script>
+<style lang="less" scoped>
+	.demo {
+		background-color: orange;
+		.qwe{
+			font-size: 40px;
+		}
+	}
+</style>
