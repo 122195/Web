@@ -1,0 +1,27 @@
+<!--
+ * @作者: kerwin
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            name:"kerwin"
+        }
+
+        let registry = new FinalizationRegistry(data=>{
+            console.log("销毁了",data)
+        })
+
+        registry.register(obj,"11111111111111")
+    </script>
+</body>
+
+</html>
