@@ -133,7 +133,7 @@ document.querySelector('.list').addEventListener('click', e => {
 document.querySelector('.edit-btn').addEventListener('click', () => {
   // 4.3 提交保存修改，并刷新列表
   const editForm = document.querySelector('.edit-form')
-  const { id, bookname, author, publisher } = serialize(editForm, { hash: true, empty: true})
+  const { id, bookname, author, publisher } = serialize(editForm, { hash: true, empty: true })
   // 保存正在编辑的图书id，隐藏起来：无需让用户修改
   // <input type="hidden" class="id" name="id" value="84783">
   axios({
