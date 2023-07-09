@@ -137,7 +137,7 @@
       {
         id: '3997403',
         name: '手工吹制更厚实白酒杯壶套装6壶6杯',
-        price: '100.00',
+        price: '99.00',
         picture: 'https://yanxuan-item.nosdn.127.net/af2371a65f60bce152a61fc22745ff3f.jpg',
       },
       {
@@ -147,40 +147,38 @@
         picture: 'https://yanxuan-item.nosdn.127.net/8896b897b3ec6639bbd1134d66b9715c.jpg',
       },
     ]
-
-    // 1.渲染函数封装
+    // 1. 渲染函数  封装
     function render(arr) {
-      // 声明空字符串
       let str = ''
       arr.forEach(item => {
-        const { name, picture, price } = item
+        const { name, price, picture } = item
         str += `
-        <div class="item">
-      <img src=${picture} alt="">
-      <p class="name">${name}</p>
-      <p class="price">${price}</p>
-    </div>
+          <div class="item">
+            <img src=${picture} alt="">
+            <p class="name">${name}</p>
+            <p class="price">${price}</p>
+          </div>
         `
-      })
+      });
       document.querySelector('.list').innerHTML = str
     }
     render(goodsList)
-    // 2.过滤筛选
+    // 过滤筛选
     document.querySelector('.filter').addEventListener('click', e => {
-      const { tagName, dataset } = e.target;
+      const { tagName, dataset } = e.target
       if (tagName === 'A') {
-        let arr = goodsList;
+        // console.log(11);
+        let arr1 = goodsList
         if (dataset.index === '1') {
-          arr = goodsList.filter(item => item.price > 0 && item.price <= 100)
+          arr1 = goodsList.filter(item => item.price > 0 && item.price <= 100)
         } else if (dataset.index === '2') {
-          arr = goodsList.filter(item => item.price >= 100 && item.price <= 300)
+          arr1 = goodsList.filter(item => item.price >= 100 && item.price <= 300)
         } else if (dataset.index === '3') {
-          arr = goodsList.filter(item => item.price >= 300)
+          arr1 = goodsList.filter(item => item.price >= 300)
         }
-        render(arr)
+        render(arr1)
       }
-    });
-
+    })
   </script>
 </body>
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">{{msg}}</div>
+    <script>
+        new Vue({
+            // 通过el配置选择器，指定Vue管理的是哪个盒子
+            el: '#app',
+            // 通过data提供数据
+            data: {
+                msg: '你好'
+            }
+        })
+    </script>
+</body>
+
+</html>

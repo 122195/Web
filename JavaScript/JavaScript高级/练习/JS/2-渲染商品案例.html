@@ -120,19 +120,19 @@
         picture: 'https://yanxuan-item.nosdn.127.net/8896b897b3ec6639bbd1134d66b9715c.jpg',
       },
     ]
-    let str = '';
+    let str = ''
     goodsList.forEach(item => {
-      // console.log(item); // 可以得到每一个数组元素
-      const { name, price, picture } = item; // 使用对象解构来获取
+      console.log(item);
+      const { name, price, picture } = item
       str += `
     <div class="item">
       <img src=${picture} alt="">
       <p class="name">${name}</p>
       <p class="price">${price}</p>
-    </div>
-    `
+    </div>`
     })
     document.querySelector('.list').innerHTML = str
+
   </script>
 </body>
 

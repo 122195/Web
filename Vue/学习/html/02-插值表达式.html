@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        注意点：
+            1.使用的数据要存在
+                <p>{{hello}}</p> 错误写法
+            2.支持的表达式，不是语句 if for
+                <p>{{if}}</p> 错误写法
+            3.不能在标签属性中使用{{}}
+                <p title="{{age}}"></p> 错误写法
+     -->
+    <div id="app">
+        <p>{{nihao}}</p>
+        <p>{{nihao.toUpperCase()}}</p>
+        <p>{{friend.name}}</p>
+        <p>{{friend.age}}</p>
+        <p>{{age >= 18 ? '成年':'未成年'}}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                nihao: 'abcde',
+                age: 17,
+                friend: {
+                    name: 'jack',
+                    age: 18
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
