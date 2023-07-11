@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .box {
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+            margin: 10px;
+            border: 3px solid #000;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 2px 2px 2px #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        v-show底层原理：切换css的display：none 来控制显示隐藏
+        v-if底层原理：根据判断条件控制元素的创建和移除(条件渲染)
+     -->
+    <div id="app">
+        <div v-show="flag" class="box">v-show</div>
+        <div v-if="flag" class="box">v-if</div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                flag: true
+            }
+        })
+    </script>
+</body>
+
+</html>
