@@ -12,9 +12,10 @@
     <div></div>
     <script>
         let spec = { size: '40cm*40cm', color: '黑色' }
-        // Object.values() 把对象转换为数组
-        // Object.values(spec)
-        console.log(Object.values(spec).join('/'));
+        // 所有的属性值拿过来
+        // console.log(Object.values(spec));
+        // 转换为字符串
+        // console.log(Object.values(spec).join('/'));
         document.querySelector('div').innerHTML = Object.values(spec).join('/')
     </script>
 </body>

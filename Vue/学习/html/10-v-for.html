@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- item是数组里面的每一项,index是数组的索引值 -->
+            <li v-for="(item, index) in list">
+                {{item}}-{{index}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                list: ['ok1', 'ok2', 'ok3']
+            }
+        })
+    </script>
+</body>
+
+</html>

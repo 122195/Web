@@ -23,12 +23,9 @@
             salary: 10000
         }
         ];
-        // 合计增加9000
-        // let money = arr.reduce(function (prev, item) {
-        //     return prev + item.salary * 0.3
-        // }, 0)
-        // console.log(money);
-        let money = arr.reduce((prev, item) => prev + item.salary * 0.3, 0)
+        let money = arr.reduce(function (prev, item) {
+            return prev + item.salary * 0.3
+        }, 0)
         console.log(money);
     </script>
 </body>
