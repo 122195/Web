@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <button @click="btn">点击倒序排序</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello World'
+            },
+            methods: {
+                btn() {
+                    // split把字符串分割成数组，reverse把数组倒序排序，join重新拼接
+                    this.msg = this.msg.split('').reverse().join('')
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

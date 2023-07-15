@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <li v-for="(item, index) in list" :key="item.id">{{item.content}}</li>
+        <button @click="btn">点击</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    { id: 1, content: 'ok1' },
+                    { id: 2, content: 'ok2' },
+                    { id: 3, content: 'ok3' },
+                ]
+            },
+            methods: {
+                btn() {
+                    // this.list.push()
+                    // shift()先把删除的元素返回，然后push接收并且添加到数组中的第一个
+                    console.log(this.list.push(this.list.shift()));
+                    // console.log(this.list = this.list.shift());
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
