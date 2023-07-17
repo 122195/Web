@@ -11,12 +11,17 @@
 <body>
     <div></div>
     <script>
-        let gift = '50g茶叶,清洗球'
-        let msg = gift.split(',').map(function (item) {
-            return `<span>【赠品】${item}</span> <br>`
-        }).join('')
-        // console.log(msg);
-        document.querySelector('div').innerHTML = msg
+        const gift = '50g的茶叶,清洗球'
+        // 1. 把字符串转换成数组
+        // console.log(gift.split(','));
+        // 根据数组元素个数，生成对应span标签
+        /*  const str = gift.split(',').map(function (item) {
+             return `<span>【赠品】${item}</span><br>`
+         }).join('')
+         // console.log(str);
+         document.querySelector('div').innerHTML = str */
+        //  ES6简写
+        document.querySelector('div').innerHTML = gift.split(',').map(item => `<span>【赠品】${item}</span><br>`).join('')
     </script>
 </body>
 
