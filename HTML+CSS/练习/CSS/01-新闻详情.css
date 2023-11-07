@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+    font-weight: 400;
+}
+
+div {
+    font-size: 14px;
+    color: #ccc;
+}
+
+p {
+    font-size: 18px;
+    text-indent: 2em;
+}
+
+.pic {
+    text-align: center;
+}

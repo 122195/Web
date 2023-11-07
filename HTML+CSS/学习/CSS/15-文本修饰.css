@@ -1,0 +1,19 @@
+a {
+    /* 去掉下划线 */
+    text-decoration: none;
+}
+
+div {
+    /* 添加下划线 */
+    text-decoration: underline;
+}
+
+p {
+    /* 添加删除线 */
+    text-decoration: line-through;
+}
+
+span {
+    /* 添加上划线 */
+    text-decoration: overline;
+}

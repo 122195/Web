@@ -1,0 +1,5 @@
+p {
+    /* line-height: 30px; */
+    /* 2 表示当前字体大小的倍数,默认字体是16px */
+    line-height: 2;
+}
