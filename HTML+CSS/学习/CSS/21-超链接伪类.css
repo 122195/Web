@@ -1,0 +1,19 @@
+/* 访问前link */
+a:link {
+    color: red;
+}
+
+/* 访问后vistied */
+a:visited {
+    color: pink;
+}
+
+/* 鼠标悬停hover */
+a:hover {
+    color: aqua;
+}
+
+/* 点击时(激活) */
+a:active {
+    color: green;
+}

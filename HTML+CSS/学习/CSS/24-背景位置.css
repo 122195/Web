@@ -1,0 +1,10 @@
+div {
+    width: 400px;
+    height: 400px;
+    background-image: url(../images/1.png);
+    background-repeat: no-repeat;
+    /* 关键字写法 left左侧 right右侧 center背景居中 top顶部 bottom底部 */
+    /* background-position: center; */
+    /* background-position: 水平值 垂直值; */
+    background-position: 50px 50px;
+}

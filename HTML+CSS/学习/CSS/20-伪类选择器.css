@@ -1,0 +1,11 @@
+/* 
+    伪类选择器：伪类表示元素状态，选中元素的某个状态设置样式
+    鼠标悬停状态：选择器:hover{css属性}
+*/
+a:hover {
+    color: green;
+}
+
+div:hover {
+    color: red;
+}
